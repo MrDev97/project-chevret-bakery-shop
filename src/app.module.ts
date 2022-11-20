@@ -13,12 +13,14 @@ import { dataSourceOptions } from './db/data-source';
 import * as cors from 'cors';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
     UsersModule,
     ProductsModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
