@@ -11,7 +11,7 @@ import { ProductRepository } from 'src/products/db/product.repository';
 import { User } from 'src/users/db/users.entity';
 import { UserAddress } from 'src/users/db/userAddress.entity';
 import { Statuses } from './enums/statuses.enum';
-import { sumTotalFromOrderedProducts } from 'src/products/orderTotal.helper';
+import { sumTotalFromOrderedProducts } from 'src/orders/orderTotal.helper';
 
 @Injectable()
 export class OrdersDataService {
