@@ -11,9 +11,10 @@ import { AppService } from './app.service';
 import { dataSourceOptions } from './db/data-source';
 
 import * as cors from 'cors';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions)],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions), UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
