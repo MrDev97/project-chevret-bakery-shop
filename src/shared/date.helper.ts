@@ -1,12 +1,5 @@
 export const dateToArray = (date: Date): Array<number> => {
-  return [
-    date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-    date.getSeconds(),
-  ];
+  return [date.getFullYear(), date.getMonth() + 1, date.getDate()];
 };
 
 export const arrayToDate = (array: any): Date => {
