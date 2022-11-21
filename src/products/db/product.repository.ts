@@ -7,4 +7,11 @@ export class ProductRepository extends Repository<Product> {
   constructor(private dataSource: DataSource) {
     super(Product, dataSource.createEntityManager());
   }
+
+  async updateProductQuantity(
+    productId: string,
+    newQuantity: number,
+  ): Promise<void> {
+    await this.update({ id: productId }, { quantity: newQuantity });
+  }
 }

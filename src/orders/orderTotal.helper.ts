@@ -1,4 +1,4 @@
-export const sumTotalFromOrderedProducts = (arr: any): number => {
+export const sumOrderedProductsTotal = (arr: any): number => {
   let totalPrice = 0;
 
   arr.forEach((element) => {
