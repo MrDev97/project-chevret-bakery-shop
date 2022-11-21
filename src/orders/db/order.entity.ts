@@ -1,3 +1,4 @@
+import { IsDate, IsString, Min } from 'class-validator';
 import { UserAddress } from 'src/users/db/userAddress.entity';
 import { User } from 'src/users/db/users.entity';
 import {
@@ -17,12 +18,15 @@ import { OrderProduct } from './orderProduct.entity';
 })
 export class Order {
   @PrimaryGeneratedColumn('uuid')
+  @IsString()
   id: string;
 
   @CreateDateColumn({ type: 'timestamp' })
+  @IsDate()
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
+  @IsDate()
   updatedAt: Date;
 
   @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.order, {
@@ -43,9 +47,11 @@ export class Order {
   address: UserAddress;
 
   @Column({ type: 'float' })
+  @Min(0)
   totalPrice: number;
 
   @Column({ type: 'text' })
+  @IsString()
   description: string;
 
   @Column('enum', {

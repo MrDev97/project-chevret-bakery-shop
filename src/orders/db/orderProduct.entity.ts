@@ -1,3 +1,4 @@
+import { IsDate, IsInt, IsNumber, IsString } from 'class-validator';
 import { Product } from 'src/products/db/product.entity';
 import {
   Entity,
@@ -14,18 +15,23 @@ import { Order } from './order.entity';
 })
 export class OrderProduct {
   @PrimaryGeneratedColumn('uuid')
+  @IsString()
   id: string;
 
   @CreateDateColumn({ type: 'timestamp' })
+  @IsDate()
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
+  @IsDate()
   updatedAt: Date;
 
   @Column({ type: 'float' })
+  @IsNumber()
   price: number;
 
   @Column()
+  @IsInt()
   quantity: number;
 
   @ManyToOne(() => Product, (product) => product.id, {

@@ -144,6 +144,8 @@ export class OrdersDataService {
         },
       });
 
+      productData.quantity = productData.quantity - orderedProduct.quantity;
+
       orderedProductToSave.quantity = orderedProduct.quantity;
       orderedProductToSave.price = productData.price * orderedProduct.quantity;
 

@@ -21,7 +21,7 @@ export class CreateProductDto {
 
   @Min(0)
   @IsNumber()
-  count: number;
+  quantity: number;
 
   @IsString()
   description: string;

@@ -26,7 +26,7 @@ export class ExternalProductDto {
 
   @Min(0)
   @IsInt()
-  count: number;
+  quantity: number;
 
   @IsString()
   description: string;

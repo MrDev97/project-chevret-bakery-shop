@@ -20,7 +20,7 @@ export class ProductsDataService {
 
       productToSave.name = item.name;
       productToSave.price = item.price;
-      productToSave.count = item.count;
+      productToSave.quantity = item.quantity;
       productToSave.description = item.description;
 
       if (item.tags) {
@@ -41,7 +41,7 @@ export class ProductsDataService {
 
       productToUpdate.name = item.name;
       productToUpdate.price = item.price;
-      productToUpdate.count = item.count;
+      productToUpdate.quantity = item.quantity;
       productToUpdate.description = item.description;
 
       if (item.tags) {

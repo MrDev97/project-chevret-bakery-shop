@@ -1,3 +1,4 @@
+import { IsString } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({
@@ -5,8 +6,10 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 })
 export class Tag {
   @PrimaryGeneratedColumn('uuid')
+  @IsString()
   id: string;
 
   @Column({ length: 50 })
+  @IsString()
   name: string;
 }
