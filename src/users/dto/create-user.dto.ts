@@ -1,4 +1,3 @@
-import { Transform, Type } from 'class-transformer';
 import { arrayToDate } from '../../shared/date.helper';
 import {
   IsEmail,
@@ -10,18 +9,23 @@ import {
   IsArray,
   Length,
 } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import * as sanitizeHtml from 'sanitize-html';
 
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
+  @Transform(({ value }) => sanitizeHtml(value))
   firstName: string;
 
   @IsString()
   @IsNotEmpty()
+  @Transform(({ value }) => sanitizeHtml(value))
   lastName: string;
 
   @IsEmail()
   @IsNotEmpty()
+  @Transform(({ value }) => sanitizeHtml(value))
   email: string;
 
   @Transform((d) => arrayToDate(d))
@@ -37,14 +41,17 @@ export class CreateUserDto {
 export class CreateUserAddressDto {
   @IsString()
   @Length(4, 56)
+  @Transform(({ value }) => sanitizeHtml(value))
   country: string;
 
   @IsString()
   @Length(1, 100)
+  @Transform(({ value }) => sanitizeHtml(value))
   city: string;
 
   @IsString()
   @Length(1, 100)
+  @Transform(({ value }) => sanitizeHtml(value))
   street: string;
 
   @IsNumber()

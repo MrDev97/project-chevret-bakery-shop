@@ -13,10 +13,13 @@ import { Statuses } from '../enums/statuses.enum';
 import { UserAddress } from 'src/users/db/userAddress.entity';
 import { User } from 'src/users/db/users.entity';
 import { Product } from 'src/products/db/product.entity';
+import { Transform } from 'class-transformer';
+import * as sanitizeHtml from 'sanitize-html';
 
 export class ExternalOrderDto {
   @IsNotEmpty()
   @IsUUID()
+  @Transform(({ value }) => sanitizeHtml(value))
   id: string;
 
   @ValidateNested({ each: true })
@@ -25,10 +28,12 @@ export class ExternalOrderDto {
 
   @IsNotEmpty()
   @IsString()
+  @Transform(({ value }) => sanitizeHtml(value))
   user: User;
 
   @IsNotEmpty()
   @IsString()
+  @Transform(({ value }) => sanitizeHtml(value))
   address: UserAddress;
 
   @IsNotEmpty()
@@ -47,6 +52,7 @@ export class ExternalOrderDto {
 export class ExternalOrderProductDto {
   @IsNotEmpty()
   @IsUUID()
+  @Transform(({ value }) => sanitizeHtml(value))
   id: string;
 
   @IsNotEmpty()

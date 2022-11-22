@@ -11,6 +11,8 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+import { Transform } from 'class-transformer';
+import * as sanitizeHtml from 'sanitize-html';
 
 export class ExternalProductDto {
   @IsUUID()
@@ -18,6 +20,7 @@ export class ExternalProductDto {
 
   @MinLength(1)
   @MaxLength(25)
+  @Transform(({ value }) => sanitizeHtml(value))
   name: string;
 
   @Min(0)
@@ -29,6 +32,7 @@ export class ExternalProductDto {
   quantity: number;
 
   @IsString()
+  @Transform(({ value }) => sanitizeHtml(value))
   description: string;
 
   @IsOptional()

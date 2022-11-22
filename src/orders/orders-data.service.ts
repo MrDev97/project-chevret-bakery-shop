@@ -83,9 +83,9 @@ export class OrdersDataService {
   async deleteOrder(id: string): Promise<void> {
     const orderToDelete = await this.getOrderById(id);
 
-    orderToDelete.orderedProducts.forEach((i) => {
-      return this.deleteOrderProduct(orderToDelete.id, i.id);
-    });
+    for (const orderedProduct of orderToDelete.orderedProducts) {
+      await this.deleteOrderProduct(orderToDelete.id, orderedProduct.id);
+    }
 
     this.orderRepository.delete(id);
   }
@@ -129,9 +129,9 @@ export class OrdersDataService {
       orderToUpdate.address = new UserAddress();
       orderToUpdate.address.id = item.addressId;
 
-      orderToUpdate.orderedProducts.forEach((i) => {
-        return this.deleteOrderProduct(orderToUpdate.id, i.id);
-      });
+      for (const orderedProduct of orderToUpdate.orderedProducts) {
+        await this.deleteOrderProduct(orderToUpdate.id, orderedProduct.id);
+      }
 
       orderToUpdate.orderedProducts = await this.saveOrderProducts(
         item.orderedProducts,
