@@ -60,23 +60,29 @@ export class OrdersDataService {
         where: { id: item.productId },
       });
 
-      const orderProduct = await this.orderProductRepository.addProductToOrder(
-        id,
-        item,
-        productData,
-      );
+      if (productData.quantity < item.quantity || productData.quantity <= 0) {
+        throw new Error('Empty Stock!');
+      } else {
+        const orderProduct =
+          await this.orderProductRepository.addProductToOrder(
+            id,
+            item,
+            productData,
+          );
 
-      productData.quantity = productData.quantity - item.quantity;
-      await this.productRepository.updateProductQuantity(
-        productData.id,
-        productData.quantity,
-      );
+        productData.quantity = productData.quantity - item.quantity;
+        await this.productRepository.updateProductQuantity(
+          productData.id,
+          productData.quantity,
+        );
 
-      const orderToUpdate = await this.getOrderById(id);
-      orderToUpdate.totalPrice = orderToUpdate.totalPrice + orderProduct.price;
-      await this.orderRepository.save(orderToUpdate);
+        const orderToUpdate = await this.getOrderById(id);
+        orderToUpdate.totalPrice =
+          orderToUpdate.totalPrice + orderProduct.price;
+        await this.orderRepository.save(orderToUpdate);
 
-      return orderProduct;
+        return orderProduct;
+      }
     });
   }
 
@@ -173,25 +179,32 @@ export class OrdersDataService {
           },
         });
 
-        productData.quantity = productData.quantity - orderedProduct.quantity;
-        await this.productRepository.updateProductQuantity(
-          productData.id,
-          productData.quantity,
-        );
+        if (
+          productData.quantity < orderedProduct.quantity ||
+          productData.quantity <= 0
+        ) {
+          throw new Error('Empty Stock!');
+        } else {
+          productData.quantity = productData.quantity - orderedProduct.quantity;
+          await this.productRepository.updateProductQuantity(
+            productData.id,
+            productData.quantity,
+          );
 
-        orderedProductToSave.quantity = orderedProduct.quantity;
-        orderedProductToSave.price =
-          productData.price * orderedProduct.quantity;
+          orderedProductToSave.quantity = orderedProduct.quantity;
+          orderedProductToSave.price =
+            productData.price * orderedProduct.quantity;
 
-        orderedProductToSave.product = new Product();
-        orderedProductToSave.product.id = productData.id;
-        orderedProductToSave.product.name = productData.name;
+          orderedProductToSave.product = new Product();
+          orderedProductToSave.product.id = productData.id;
+          orderedProductToSave.product.name = productData.name;
 
-        await this.orderProductRepository.save(orderedProductToSave);
-        orderedProductsToSave.push(orderedProductToSave);
+          await this.orderProductRepository.save(orderedProductToSave);
+          orderedProductsToSave.push(orderedProductToSave);
+        }
+
+        return orderedProductsToSave;
       }
-
-      return orderedProductsToSave;
     });
   }
 }
