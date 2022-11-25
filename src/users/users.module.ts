@@ -16,5 +16,6 @@ import { User } from './db/users.entity';
     UserAddressRepository,
   ],
   imports: [TypeOrmModule.forFeature([User])],
+  exports: [UsersDataService],
 })
 export class UsersModule {}

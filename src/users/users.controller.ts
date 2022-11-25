@@ -49,8 +49,10 @@ export class UsersController {
   }
 
   mapUserToExternal(user: User): ExternalUserDto {
+    const { password, ...rest } = user;
+
     return {
-      ...user,
+      ...rest,
       dateOfBirth: dateToArray(new Date(user.dateOfBirth)),
     };
   }

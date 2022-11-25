@@ -7,6 +7,7 @@ import { UserRepository } from './db/users.repository';
 import { UserAddressRepository } from './db/userAddress.repository';
 import { DataSource } from 'typeorm';
 import { UserRoles } from 'src/shared/enums/user-roles.enum';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersDataService {
@@ -24,6 +25,7 @@ export class UsersDataService {
       userToSave.lastName = user.lastName;
       userToSave.email = user.email;
       userToSave.dateOfBirth = user.dateOfBirth;
+      userToSave.password = await bcrypt.hash(user.password, 10);
       userToSave.role = UserRoles.CUSTOMER;
 
       if (user.address) {
@@ -135,6 +137,10 @@ export class UsersDataService {
 
   getUserById(id: string): Promise<User> {
     return this.userRepository.findOne({ where: { id } });
+  }
+
+  getUserByEmail(email: string): Promise<User> {
+    return this.userRepository.getUserByEmail(email);
   }
 
   getAllUsers(): Promise<User[]> {

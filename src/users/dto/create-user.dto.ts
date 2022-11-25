@@ -28,6 +28,9 @@ export class CreateUserDto {
   @Transform(({ value }) => sanitizeHtml(value))
   email: string;
 
+  @IsNotEmpty()
+  password: string;
+
   @Transform((d) => arrayToDate(d))
   dateOfBirth: Date;
 

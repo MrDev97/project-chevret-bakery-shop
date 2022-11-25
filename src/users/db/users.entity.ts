@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { UserRoles } from 'src/shared/enums/user-roles.enum';
 import { UserAddress } from './userAddress.entity';
 import { IsDate, IsEmail, IsString } from 'class-validator';
+import { Exclude } from 'class-transformer';
 
 @Entity({
   name: 'users',
@@ -22,6 +23,11 @@ export class User {
   @Column({ length: 50 })
   @IsEmail()
   email: string;
+
+  @Column()
+  @IsString()
+  @Exclude()
+  password: string;
 
   @Column({ type: 'date' })
   @IsDate()
