@@ -24,7 +24,9 @@ import { dateToArray } from 'src/shared/date.helper';
 import { UserAddress } from './db/userAddress.entity';
 import { LoggedInGuard } from 'src/auth/guards/logged-in.guard';
 import { AdminGuard } from 'src/auth/guards/admin.guard';
+import { UserIsUser } from './guards/user-is-user.guard';
 
+@UseGuards(LoggedInGuard)
 @Controller('users')
 export class UsersController {
   constructor(
@@ -32,7 +34,7 @@ export class UsersController {
     private userValidator: UserValidatorService,
   ) {}
 
-  @UseGuards(LoggedInGuard)
+  @UseGuards(UserIsUser)
   @Get(':id')
   async getUserById(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
@@ -40,7 +42,7 @@ export class UsersController {
     return this.mapUserToExternal(await this.userService.getUserById(id));
   }
 
-  @UseGuards(LoggedInGuard, AdminGuard)
+  @UseGuards(AdminGuard)
   @Get()
   async getAllUsers(): Promise<ExternalUserDto[]> {
     return (await this.userService.getAllUsers()).map((i) =>
@@ -48,6 +50,7 @@ export class UsersController {
     );
   }
 
+  @UseGuards(AdminGuard)
   @Post()
   async addUser(@Body() item: CreateUserDto): Promise<ExternalUserDto> {
     await this.userValidator.validateUniqueEmail(item.email);
@@ -55,7 +58,8 @@ export class UsersController {
   }
 
   mapUserToExternal(user: User): ExternalUserDto {
-    const { password, role, ...rest } = user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, role, ...rest } = user; // password & role should not be shared due to sensitivity
 
     return {
       ...rest,
@@ -69,11 +73,14 @@ export class UsersController {
     };
   }
 
-  @Delete(':id') @HttpCode(204) deleteUser(@Param('id') id: string): void {
+  @UseGuards(UserIsUser)
+  @Delete(':id')
+  @HttpCode(204)
+  deleteUser(@Param('id') id: string): void {
     this.userService.deleteUser(id);
   }
 
-  @UseGuards(LoggedInGuard, AdminGuard)
+  @UseGuards(UserIsUser)
   @Put(':id')
   async updateUser(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
@@ -82,6 +89,7 @@ export class UsersController {
     return this.mapUserToExternal(await this.userService.updateUser(id, item));
   }
 
+  @UseGuards(UserIsUser)
   @Put(':id/addresses')
   async addAddressToUser(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
@@ -92,6 +100,7 @@ export class UsersController {
     );
   }
 
+  @UseGuards(UserIsUser)
   @Delete(':userId/addresses/:userAddressId')
   async deleteUserAddress(
     @Param('userId', new ParseUUIDPipe({ version: '4' }))
@@ -104,7 +113,7 @@ export class UsersController {
     );
   }
 
-  @UseGuards(LoggedInGuard, AdminGuard)
+  @UseGuards(UserIsUser)
   @Patch(':userId/:userAddressId')
   async updateUserAddress(
     @Param('userId', new ParseUUIDPipe({ version: '4' }))

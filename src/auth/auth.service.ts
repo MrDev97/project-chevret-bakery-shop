@@ -14,7 +14,8 @@ export class AuthService {
       throw new UnauthorizedException('Incorrect username or password');
     }
 
-    const { password, ...rest } = foundUser;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = foundUser; // password shall not be displayed, causing "unused value" warning
     return rest;
   }
 }

@@ -16,7 +16,8 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { ExternalProductDto } from './dto/external-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { dateToArray } from 'src/shared/date.helper';
-import { RoleGuard } from 'src/shared/guards/role.guard';
+import { LoggedInGuard } from 'src/auth/guards/logged-in.guard';
+import { AdminGuard } from 'src/auth/guards/admin.guard';
 
 @Controller('products')
 export class ProductsController {
@@ -38,7 +39,7 @@ export class ProductsController {
     );
   }
 
-  @UseGuards(RoleGuard)
+  @UseGuards(LoggedInGuard, AdminGuard)
   @Post()
   async addProduct(
     @Body() item: CreateProductDto,
@@ -57,10 +58,14 @@ export class ProductsController {
     };
   }
 
-  @Delete(':id') @HttpCode(204) deleteProduct(@Param('id') _id_: string): void {
+  @UseGuards(LoggedInGuard, AdminGuard)
+  @Delete(':id')
+  @HttpCode(204)
+  deleteProduct(@Param('id') _id_: string): void {
     this.productService.deleteProduct(_id_);
   }
 
+  @UseGuards(LoggedInGuard, AdminGuard)
   @Put(':id')
   async updateProduct(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,

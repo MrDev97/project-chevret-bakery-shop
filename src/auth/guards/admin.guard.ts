@@ -7,8 +7,6 @@ export class AdminGuard extends LoggedInGuard {
   async canActivate(context: ExecutionContext) {
     const req = context.switchToHttp().getRequest();
 
-    console.log(req);
-
     return (
       super.canActivate(context) &&
       req.session.passport.user.role === UserRoles.ADMIN
