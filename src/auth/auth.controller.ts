@@ -18,6 +18,12 @@ export class AuthController {
     return req.user;
   }
 
+  @UseGuards(LocalAuthGuard)
+  @Post('logout')
+  async logout(@Request() req): Promise<any> {
+    return req.session.destroy();
+  }
+
   @Post('register')
   async registerUser(
     @Body() item: RegisterUserDto,
