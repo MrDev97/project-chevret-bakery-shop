@@ -30,6 +30,10 @@ export class OrdersDataService {
     return this.orderRepository.find();
   }
 
+  getAllUserOrders(id: string): Promise<Order[]> {
+    return this.orderRepository.findByUser(id);
+  }
+
   async addOrder(item: CreateOrderDto): Promise<Order> {
     return await this.dataSource.transaction(async () => {
       const orderToSave = new Order();

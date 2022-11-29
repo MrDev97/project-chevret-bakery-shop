@@ -35,7 +35,6 @@ export class User {
 
   @Column('enum', {
     enum: UserRoles,
-    select: false,
   })
   role: UserRoles;
 

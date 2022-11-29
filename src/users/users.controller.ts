@@ -9,6 +9,7 @@ import {
   Put,
   ParseUUIDPipe,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
 import { User } from './db/users.entity';
 import { UsersDataService } from './users-data-service';
@@ -21,6 +22,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserValidatorService } from './user-validator.service';
 import { dateToArray } from 'src/shared/date.helper';
 import { UserAddress } from './db/userAddress.entity';
+import { LoggedInGuard } from 'src/auth/guards/logged-in.guard';
+import { AdminGuard } from 'src/auth/guards/admin.guard';
 
 @Controller('users')
 export class UsersController {
@@ -29,12 +32,15 @@ export class UsersController {
     private userValidator: UserValidatorService,
   ) {}
 
-  @Get(':id') async getUserById(
+  @UseGuards(LoggedInGuard)
+  @Get(':id')
+  async getUserById(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
   ): Promise<ExternalUserDto> {
     return this.mapUserToExternal(await this.userService.getUserById(id));
   }
 
+  @UseGuards(LoggedInGuard, AdminGuard)
   @Get()
   async getAllUsers(): Promise<ExternalUserDto[]> {
     return (await this.userService.getAllUsers()).map((i) =>
@@ -49,7 +55,7 @@ export class UsersController {
   }
 
   mapUserToExternal(user: User): ExternalUserDto {
-    const { password, ...rest } = user;
+    const { password, role, ...rest } = user;
 
     return {
       ...rest,
@@ -67,6 +73,7 @@ export class UsersController {
     this.userService.deleteUser(id);
   }
 
+  @UseGuards(LoggedInGuard, AdminGuard)
   @Put(':id')
   async updateUser(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
@@ -97,6 +104,7 @@ export class UsersController {
     );
   }
 
+  @UseGuards(LoggedInGuard, AdminGuard)
   @Patch(':userId/:userAddressId')
   async updateUserAddress(
     @Param('userId', new ParseUUIDPipe({ version: '4' }))

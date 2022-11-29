@@ -5,6 +5,7 @@ import { OrderRepository } from './db/order.repository';
 import { OrdersController } from './orders.controller';
 import { OrderProductRepository } from './db/orderProduct.repository';
 import { ProductRepository } from 'src/products/db/product.repository';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   controllers: [OrdersController],
@@ -16,6 +17,7 @@ import { ProductRepository } from 'src/products/db/product.repository';
   ],
   imports: [
     TypeOrmModule.forFeature([OrderRepository, OrderProductRepository]),
+    UsersModule,
   ],
 })
 export class OrdersModule {}

@@ -1,20 +1,20 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersDataService } from 'src/users/users-data-service';
 import * as bcrypt from 'bcrypt';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Injectable()
 export class AuthService {
   constructor(private usersDataService: UsersDataService) {}
 
-  async validateUser(email: string, password: string): Promise<any> {
-    const user = await this.usersDataService.getUserByEmail(email);
-    const isMatch = await bcrypt.compare(password, user.password);
+  async validateUser(user: LoginUserDto): Promise<any> {
+    const foundUser = await this.usersDataService.getUserByEmail(user.email);
 
-    if (user && isMatch) {
-      const { password, ...rest } = user;
-      return rest;
+    if (!user || !(await bcrypt.compare(user.password, foundUser.password))) {
+      throw new UnauthorizedException('Incorrect username or password');
     }
 
-    return null;
+    const { password, ...rest } = foundUser;
+    return rest;
   }
 }
