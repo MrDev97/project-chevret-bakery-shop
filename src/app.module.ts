@@ -20,9 +20,10 @@ import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { AuthModule } from './auth/auth.module';
-
 import { SessionRepostiory } from './sessions/db/session.repository';
 import { TypeormStore } from 'connect-typeorm';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -31,6 +32,9 @@ import { TypeormStore } from 'connect-typeorm';
     ProductsModule,
     OrdersModule,
     AuthModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client/build/index.html'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, SessionRepostiory],
