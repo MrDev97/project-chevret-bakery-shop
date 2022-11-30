@@ -33,7 +33,7 @@ import { join } from 'path';
     OrdersModule,
     AuthModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client/build/index.html'),
+      rootPath: join(__dirname, '..', 'client/build/'),
     }),
   ],
   controllers: [AppController],
@@ -49,7 +49,10 @@ export class AppModule implements NestModule {
     const oneDay = 1000 * 60 * 60 * 24;
     consumer
       .apply(
-        cors(),
+        cors({
+          origin: ['http://localhost:8000', 'http://localhost:3000'],
+          credentials: true,
+        }),
         session({
           secret: uuidv4(),
           resave: false,

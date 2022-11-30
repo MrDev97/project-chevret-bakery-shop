@@ -11,6 +11,6 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggerInterceptor());
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setGlobalPrefix('api');
-  await app.listen(3000);
+  await app.listen(8000);
 }
 bootstrap();
