@@ -9,6 +9,7 @@ import {
   Put,
   ParseUUIDPipe,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { Product } from './db/product.entity';
 import { ProductsDataService } from './products-data.service';
@@ -18,6 +19,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { dateToArray } from 'src/shared/date.helper';
 import { LoggedInGuard } from 'src/auth/guards/logged-in.guard';
 import { AdminGuard } from 'src/auth/guards/admin.guard';
+import { ProductsQuery } from './queries/products-query.interface';
 
 @Controller('products')
 export class ProductsController {
@@ -33,8 +35,10 @@ export class ProductsController {
   }
 
   @Get()
-  async getAllProducts(): Promise<Array<ExternalProductDto>> {
-    return (await this.productService.getAllProducts()).map((i) =>
+  async getAllProducts(
+    @Query() query: ProductsQuery,
+  ): Promise<Array<ExternalProductDto>> {
+    return (await this.productService.getAllProducts(query)).map((i) =>
       this.mapProductToExternal(i),
     );
   }
