@@ -1,6 +1,56 @@
-// @use "sass:math";
-// @import '../../styles/settings.scss';
+@import '../../../styles/settings.scss';
 
-.navbar-custom {
-    background-color: lightgreen !important
+.navbar {
+  background-color: $color-accent;
+  color: $color-light;
+
+  img {
+    height: 200px;
+    width: 200px;
+  }
+
+  .button {
+    color: $color-main;
+    border-color: $color-main;
+  }
+
+  .button:hover {
+    color: $color-accent;
+    background-color: $color-main;
+    border-color: $color-main;
+  }
+}
+
+.brand {   
+  span {
+    font-family: $font-main;
+    font-weight: 200;
+    color: $color-light;
+    font-size: $base-size * 3.5;
+    line-height: 1.2;
+
+  &:nth-of-type(even) {
+    font-family: $font-sub;
+    font-weight: 400;
+    font-size: $base-size * 2.25;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+
+.navbar{ 
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}
+  
+.brand span {
+  font-size: $base-size;
+
+  &:nth-of-type(even) {
+    font-size: $base-size;
+    }
+  }
 }
