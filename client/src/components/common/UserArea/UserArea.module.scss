@@ -1,10 +1,11 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings";
 
-.background, svg {
+.background,
+svg {
   color: $color-main;
 }
 
 .user {
-  color:$color-accent;
+  color: $color-accent;
   background-color: $color-main;
 }

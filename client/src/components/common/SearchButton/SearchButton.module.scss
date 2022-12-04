@@ -1,11 +1,12 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings";
 
-.background, svg {
+.background,
+svg {
   color: $color-main;
 }
 
 .glass {
-  color:$color-accent;
+  color: $color-accent;
   background-color: $color-main;
 }
 

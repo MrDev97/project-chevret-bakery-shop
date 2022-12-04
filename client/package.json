@@ -23,7 +23,6 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "sass": "^1.56.1",
-    "stylelint": "^14.16.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -43,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier-stylelint": "^0.4.2",
+    "stylelint": "^14.16.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard-scss": "^6.1.0"
   }
 }
