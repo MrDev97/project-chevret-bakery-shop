@@ -1,60 +1,66 @@
+import { useState } from 'react';
 import styles from './NavBar.module.scss';
 import { IMGS_URL } from '../../../config';
-import { Navbar, Nav, Form, Button, Container } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Navbar, Form, Button, Container, Collapse } from 'react-bootstrap';
+import SearchButton from '../../common/SearchButton/SearchButton';
+import ShoppingCart from '../../common/ShoppingCart/ShoppingCart';
+import UserArea from '../../common/UserArea/UserArea';
+import HomeButton from '../../common/HomeButton/HomeButton';
 
 const NavBar = () => {
+  const [open, setOpen] = useState(false);
+
+  const toggleSearch = () => {
+    setOpen(!open);
+  };
+
   return (
     <Navbar expand="lg" className={styles.navbar}>
       <Container>
-        <Navbar.Brand
-          href="/"
-          className={`d-flex justify-content-start md-justify-content-center col ${styles.brand}`}
-        >
-          <div className="d-flex align-items-start justify-content-center col-4 col-md-4">
-            <img
-              src={IMGS_URL + 'logo.svg'}
-              className="d-inline-block align-top"
-              alt="Bakery Logo"
-            />
-          </div>
-          <div className="d-flex align-items-start justify-content-center flex-column col-4 col-md-8">
+        <Navbar.Brand href="/" className={`d-flex ${styles.brand}`}>
+          <img
+            src={IMGS_URL + 'logo.svg'}
+            className="d-inline-block align-top"
+            alt="Bakery Logo"
+          />
+
+          <div className="d-flex justify-content-center flex-column">
             <span> Crunchy Dreams </span>
             <span> ONLINE SHOP </span>
           </div>
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="text-center">
-          <Nav className="fs-4 me-3">
-            <Nav.Link as={NavLink} to="/">
-              Home
-            </Nav.Link>
-            <>
-              <Nav.Link as={NavLink} to="/auth/register">
-                Sign Up
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/auth/login">
-                Login
-              </Nav.Link>
-            </>
-          </Nav>
-          <Form className="d-flex m-2">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2 my-2"
-              aria-label="Search"
+        <Container>
+          <div className="d-flex justify-content-between justify-content-md-end">
+            <HomeButton />
+            <UserArea />
+            <SearchButton
+              action={toggleSearch}
+              aria-controls="collapse-search-form"
+              aria-expanded={open}
             />
-            <Button
-              type="submit"
-              className={`align-self-center ${styles.button}`}
-              variant="outline"
-            >
-              Search
-            </Button>
-          </Form>
-        </Navbar.Collapse>
+            <ShoppingCart />
+          </div>
+
+          <Collapse in={open}>
+            <div id="collapse-search-form">
+              <Form className="d-flex m-2">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2 my-2"
+                />
+                <Button
+                  type="submit"
+                  className={`align-self-center ${styles.button}`}
+                  variant="outline"
+                >
+                  Search
+                </Button>
+              </Form>
+            </div>
+          </Collapse>
+        </Container>
       </Container>
     </Navbar>
   );

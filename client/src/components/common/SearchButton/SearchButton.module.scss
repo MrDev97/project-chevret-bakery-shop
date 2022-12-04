@@ -1,0 +1,16 @@
+@import '../../../styles/settings.scss';
+
+
+.background, svg {
+  color: $color-main;
+}
+
+.glass {
+  color:$color-accent;
+  background-color: $color-main;
+}
+
+button {
+  background: none;
+  border: none;
+}
