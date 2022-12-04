@@ -1,12 +1,13 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings";
 
 .navbar {
   background-color: $color-accent;
   color: $color-light;
 
   img {
-    height: 200px;
-    width: 200px;
+    height: $base-size * 12.5;
+    width: $base-size * 12.5;
+    margin-right: $base-size * 1.66;
   }
 
   .button {
@@ -21,36 +22,37 @@
   }
 }
 
-.brand {   
+.brand {
   span {
     font-family: $font-main;
-    font-weight: 200;
+    font-weight: $base-size * 33.3;
     color: $color-light;
     font-size: $base-size * 3.5;
     line-height: 1.2;
 
-  &:nth-of-type(even) {
-    font-family: $font-sub;
-    font-weight: 400;
-    font-size: $base-size * 2.25;
+    &:nth-of-type(even) {
+      font-family: $font-sub;
+      font-weight: $base-size * 66.6;
+      font-size: $base-size * 2.25;
     }
   }
 }
 
 @media (max-width: 767px) {
-
-.navbar{ 
-  img {
-    height: 100px;
-    width: 100px;
+  .navbar {
+    img {
+      height: $base-size * 6.33;
+      width: $base-size * 6.33;
+      margin: 0;
+    }
   }
-}
-  
-.brand span {
-  font-size: $base-size;
 
-  &:nth-of-type(even) {
+  .brand span {
     font-size: $base-size;
+    margin-left: $base-size;
+
+    &:nth-of-type(even) {
+      font-size: $base-size;
     }
   }
 }

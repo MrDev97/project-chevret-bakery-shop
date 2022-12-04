@@ -4,7 +4,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const UserArea = () => {
   return (
-    <a href="/user/:id">
+    <a href="/users/:id">
       <span className={`fa-stack fa-2x has-badge ${styles.background}`}>
         <FontAwesomeIcon icon={solid('circle')} className="fa-stack-2x" />
         <FontAwesomeIcon

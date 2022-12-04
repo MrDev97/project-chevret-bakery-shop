@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styles from './NavBar.module.scss';
-import { IMGS_URL } from '../../../config';
 import { Navbar, Form, Button, Container, Collapse } from 'react-bootstrap';
 import SearchButton from '../../common/SearchButton/SearchButton';
 import ShoppingCart from '../../common/ShoppingCart/ShoppingCart';
@@ -16,11 +15,14 @@ const NavBar = () => {
 
   return (
     <Navbar expand="lg" className={styles.navbar}>
-      <Container>
-        <Navbar.Brand href="/" className={`d-flex ${styles.brand}`}>
+      <Container className="mb-2">
+        <Navbar.Brand
+          href="/"
+          className={`d-flex col my-3 mx-0 justify-content-center ${styles.brand}`}
+        >
           <img
-            src={IMGS_URL + 'logo.svg'}
-            className="d-inline-block align-top"
+            src={'../../../logo.svg'}
+            className="d-inline-block"
             alt="Bakery Logo"
           />
 
