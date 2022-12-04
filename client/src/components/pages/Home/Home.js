@@ -1,4 +1,5 @@
 import { Container } from 'react-bootstrap';
+import Products from '../../views/Products/Products';
 
 const Home = () => {
   return (
@@ -6,6 +7,7 @@ const Home = () => {
       <div className="d-flex justify-content-between">
         <h1 className="m-0 align-self-center">All Delicious Products</h1>
       </div>
+      <Products />
     </Container>
   );
 };

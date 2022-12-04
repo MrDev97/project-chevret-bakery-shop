@@ -9,7 +9,10 @@ const ShoppingCart = (props) => {
         data-count="10"
         className={`fa-stack fa-2x has-badge ${styles.background}`}
       >
-        <FontAwesomeIcon icon={solid('circle')} className="fa-stack-2x" />
+        <FontAwesomeIcon
+          icon={solid('circle')}
+          className={`fa-stack-2x ${styles.background}`}
+        />
         <FontAwesomeIcon
           icon={solid('cart-shopping')}
           className={`fa-stack-1x fa-inverse ${styles.cart}`}

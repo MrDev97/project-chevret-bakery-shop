@@ -1,11 +1,12 @@
-import styles from './SearchButton.module.scss';
+import styles from './QuantityButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const SearchButton = (props) => {
+const QuantityButton = ({ action, add }) => {
   const handleClick = (e) => {
     e.preventDefault();
-    props.action();
+    action();
   };
 
   return (
@@ -16,12 +17,12 @@ const SearchButton = (props) => {
           className={`fa-stack-2x ${styles.background}`}
         />
         <FontAwesomeIcon
-          icon={solid('magnifying-glass')}
-          className={`fa-stack-1x fa-inverse ${styles.glass}`}
+          icon={add === true ? faPlus : faMinus}
+          className={`fa-stack-1x fa-inverse ${styles.icon}`}
         />
       </span>
     </button>
   );
 };
 
-export default SearchButton;
+export default QuantityButton;

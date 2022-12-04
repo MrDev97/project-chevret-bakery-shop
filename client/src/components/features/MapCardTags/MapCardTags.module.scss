@@ -1,0 +1,17 @@
+@import "../../../styles/settings";
+
+.tags {
+  pointer-events: none;
+  margin-bottom: $base-size * 1.5;
+  min-height: $base-size * 3.2;
+
+  .new {
+    background-color: $color-info;
+    border-color: $color-info;
+  }
+
+  .promo {
+    background-color: $color-danger;
+    border-color: $color-danger;
+  }
+}

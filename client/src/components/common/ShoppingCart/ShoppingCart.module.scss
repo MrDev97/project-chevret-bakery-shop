@@ -1,30 +1,30 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings";
 
-
-.background { 
-    &[data-count]:after {
-    position:absolute;
-    right:0%;
-    top:0%;
+.background {
+  &[data-count]::after {
+    position: absolute;
+    right: 0%;
+    top: 0%;
     content: attr(data-count);
-    font-size:40%;
-    padding:.6em;
-    border-radius:999px;
-    line-height:.75em;
+    font-size: 40%;
+    padding: 0.6em;
+    border-radius: 999px;
+    line-height: 0.75em;
     color: $color-accent;
-    text-align:center;
-    min-width:2em;
-    font-weight:bold;
+    text-align: center;
+    min-width: 2em;
+    font-weight: bold;
     background: $color-light;
-    border-style:solid;
+    border-style: solid;
   }
 }
 
-.background, svg {
+.background,
+svg {
   color: $color-main;
 }
 
 .cart {
-  color:$color-accent;
+  color: $color-accent;
   background-color: $color-main;
 }

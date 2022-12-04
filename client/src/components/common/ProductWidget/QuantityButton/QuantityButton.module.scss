@@ -1,0 +1,16 @@
+@import "../../../../styles/settings";
+
+.background,
+svg {
+  color: $color-dark;
+}
+
+.icon {
+  color: $color-accent;
+  background-color: $color-dark;
+}
+
+button {
+  background: none;
+  border: none;
+}
