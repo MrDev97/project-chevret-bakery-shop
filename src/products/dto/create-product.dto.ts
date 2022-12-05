@@ -34,4 +34,8 @@ export class CreateProductDto {
   @IsArray()
   @IsEnum(Tags, { each: true })
   tags?: string[];
+
+  @IsOptional()
+  @IsArray()
+  images?: string[];
 }

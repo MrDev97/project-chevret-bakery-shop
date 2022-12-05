@@ -23,11 +23,13 @@ const Product = (props) => {
   return (
     <Col>
       <Card className={styles.card}>
-        <Card.Img
-          style={{ resizeMode: 'cover' }}
-          crossOrigin="anonymous"
-          src={IMGS_URL + props.image}
-        />
+        {props.images && (
+          <Card.Img
+            style={{ resizeMode: 'cover' }}
+            crossOrigin="anonymous"
+            src={IMGS_URL + props.images[0]}
+          />
+        )}
         <Card.Body>
           <Card.Title className="mb-3 text-truncate text-center">
             {props.name}

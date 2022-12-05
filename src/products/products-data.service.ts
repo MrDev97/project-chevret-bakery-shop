@@ -5,12 +5,15 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductRepository } from './db/product.repository';
 import { TagRepository } from './db/tag.repository';
 import { DataSource } from 'typeorm';
+import { ProductImageRepository } from './db/productImage.repository';
+import { ProductImage } from './db/productImage.entity';
 
 @Injectable()
 export class ProductsDataService {
   constructor(
     private productRepository: ProductRepository,
     private tagRepository: TagRepository,
+    private productImageRepository: ProductImageRepository,
     private dataSource: DataSource,
   ) {}
 
@@ -27,8 +30,27 @@ export class ProductsDataService {
         productToSave.tags = await this.tagRepository.findTagsByName(item.tags);
       }
 
+      if (item.images) {
+        productToSave.images = await this.saveProductImages(item.images);
+      }
+
       return await this.productRepository.save(productToSave);
     });
+  }
+
+  async saveProductImages(images: string[]): Promise<ProductImage[]> {
+    const prodImagesToSave: ProductImage[] = [];
+
+    for (let i = 0; i < images.length; i++) {
+      const imageToSave = new ProductImage();
+
+      imageToSave.name = images[i].toLowerCase();
+
+      await this.productImageRepository.save(imageToSave);
+      prodImagesToSave.push(imageToSave);
+    }
+
+    return prodImagesToSave;
   }
 
   async deleteProduct(id: string): Promise<void> {
@@ -48,6 +70,10 @@ export class ProductsDataService {
         productToUpdate.tags = await this.tagRepository.findTagsByName(
           item.tags,
         );
+      }
+
+      if (item.images) {
+        productToUpdate.images = await this.saveProductImages(item.images);
       }
 
       await this.productRepository.save(productToUpdate);

@@ -59,6 +59,7 @@ export class ProductsController {
       createdAt: dateToArray(product.createdAt),
       updatedAt: dateToArray(product.updatedAt),
       tags: product.tags?.map((i) => i.name),
+      images: product.images?.map((i) => i.name),
     };
   }
 

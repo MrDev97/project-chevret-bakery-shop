@@ -41,6 +41,9 @@ export class ExternalProductDto {
   tags?: string[];
 
   @IsArray()
+  images?: string[];
+
+  @IsArray()
   @IsNumber({}, { each: true })
   createdAt: Array<number>;
 

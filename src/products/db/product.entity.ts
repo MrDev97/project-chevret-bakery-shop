@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 import { IsDate, IsString, Min, IsInt, IsNumber } from 'class-validator';
 import { Tag } from './tag.entity';
+import { ProductImage } from './productImage.entity';
 
 @Entity({
   name: 'products',
@@ -52,6 +54,12 @@ export class Product {
     },
   })
   tags: Tag[];
+
+  @OneToMany(() => ProductImage, (image) => image.product, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
+  images: ProductImage[];
 
   @CreateDateColumn({ type: 'timestamp' })
   @IsDate()
