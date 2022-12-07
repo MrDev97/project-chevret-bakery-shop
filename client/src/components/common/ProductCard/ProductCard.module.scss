@@ -15,10 +15,6 @@
   }
 }
 
-.price {
-  font-size: $base-size * 2;
-}
-
 .link {
   text-decoration: none;
 
@@ -57,10 +53,34 @@
   &.card {
     background-color: $color-main;
     border: $base-size / 7 solid $color-accent;
-    border-radius: 0%;
+    border-radius: 0;
+    font-family: $font-main;
 
     img {
-      max-height: $base-size * 23;
+      height: $base-size * 23;
+      border-radius: 0;
+      object-fit: cover;
+    }
+  }
+
+  .header {
+    min-height: $base-size * 9.25;
+    justify-content: center;
+  }
+
+  input {
+    font-size: $base-size * 1.5;
+    padding-top: 0;
+  }
+
+  .price {
+    font-size: $base-size * 2;
+    margin-bottom: $base-size;
+
+    span {
+      font-size: $base-size;
+      align-self: flex-end;
+      margin-left: $base-size / 2;
     }
   }
 }

@@ -24,23 +24,22 @@ const Product = (props) => {
     <Col>
       <Card className={styles.card}>
         {props.images && (
-          <Card.Img
-            style={{ resizeMode: 'cover' }}
-            crossOrigin="anonymous"
-            src={IMGS_URL + props.images[0]}
-          />
+          <Card.Img crossOrigin="anonymous" src={IMGS_URL + props.images[0]} />
         )}
         <Card.Body>
-          <Card.Title className="mb-3 text-truncate text-center">
-            {props.name}
-          </Card.Title>
-          <MapCardTags tags={props.tags} />
+          <div className={`d-flex flex-column ${styles.header}`}>
+            <Card.Title className="mb-3 text-truncate text-center">
+              <h2>{props.name}</h2>
+            </Card.Title>
+            <MapCardTags tags={props.tags} />
+          </div>
           <Container className="d-flex p-0">
             <div className="d-flex col-8 flex-column justify-content-start">
               <div
                 className={`d-flex p-0 justify-content-center ${styles.price}`}
               >
-                {props.price} PLN
+                <h3>{props.price}</h3>
+                <span>PLN</span>
               </div>
               <div className="d-flex justify-content-center">
                 <QuantityButton action={removeCartProduct} add={false} />
