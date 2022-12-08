@@ -1,0 +1,14 @@
+@import "../../../styles/settings";
+
+.carousel {
+  height: 100%;
+  width: 100%;
+
+  & img {
+    border-radius: 0;
+    object-fit: cover;
+    display: block;
+    height: 360px;
+    width: 640px;
+  }
+}

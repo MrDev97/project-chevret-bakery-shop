@@ -1,23 +1,17 @@
 import { useState } from 'react';
-import { Col, Card, Button, Form, Container } from 'react-bootstrap';
+import { Col, Card, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IMGS_URL } from '../../../config';
-import QuantityButton from '../ProductWidget/QuantityButton/QuantityButton';
+import QuantityController from '../ProductWidget/QuantityController/QuantityController';
 import MapCardTags from '../../features/MapCardTags/MapCardTags';
 import styles from './ProductCard.module.scss';
 
-const Product = (props) => {
+const ProductCard = (props) => {
   const [quantity, setQuantity] = useState(0);
+
   const updateCart = (props) => {
     console.log('Cart Updated!');
-  };
-
-  const addCartProduct = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const removeCartProduct = () => {
-    setQuantity(quantity - 1);
+    console.log(props);
   };
 
   return (
@@ -31,7 +25,9 @@ const Product = (props) => {
             <Card.Title className="mb-3 text-truncate text-center">
               <h2>{props.name}</h2>
             </Card.Title>
-            <MapCardTags tags={props.tags} />
+            {!!props.tags.length && (
+              <MapCardTags className={styles.tags} tags={props.tags} />
+            )}
           </div>
           <Container className="d-flex p-0">
             <div className="d-flex col-8 flex-column justify-content-start">
@@ -41,16 +37,14 @@ const Product = (props) => {
                 <h3>{props.price}</h3>
                 <span>PLN</span>
               </div>
-              <div className="d-flex justify-content-center">
-                <QuantityButton action={removeCartProduct} add={false} />
-                <Form.Control
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  type="number"
-                  className={`align-self-center ${styles.input}`}
-                />
-                <QuantityButton action={addCartProduct} add={true} />
-              </div>
+              <QuantityController
+                quantity={quantity}
+                setQuantity={setQuantity}
+                action={updateCart}
+                productId={props.id}
+                price={props.price}
+                name={props.name}
+              />
             </div>
             <Link
               to={`/products/${props.id}`}
@@ -67,4 +61,4 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+export default ProductCard;

@@ -4,9 +4,9 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const ShoppingCart = (props) => {
   return (
-    <a href="/user/cart">
+    <a href="/users/cart">
       <span
-        data-count="10"
+        data-count="23"
         className={`fa-stack fa-2x has-badge ${styles.background}`}
       >
         <FontAwesomeIcon

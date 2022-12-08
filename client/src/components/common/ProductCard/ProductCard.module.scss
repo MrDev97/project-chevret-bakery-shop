@@ -1,54 +1,5 @@
 @import "../../../styles/settings";
 
-/* Firefox */
-.input[type="number"] {
-  appearance: textfield;
-  max-width: $base-size * 5;
-  text-align: center;
-
-  /* Chrome, Safari, Edge, Opera */
-  &::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    appearance: none;
-    margin: 0;
-    text-align: center;
-  }
-}
-
-.link {
-  text-decoration: none;
-
-  .button {
-    color: $color-light;
-    border-color: $color-accent;
-    background-color: $color-accent;
-    height: $base-size * 3.5;
-    width: $base-size * 8;
-
-    &:hover {
-      color: $color-accent;
-      background-color: $color-dark;
-      border-color: $color-dark;
-    }
-  }
-}
-
-.tags {
-  pointer-events: none;
-  margin-bottom: $base-size * 1.5;
-  min-height: $base-size * 3.2;
-
-  .new {
-    background-color: $color-info;
-    border-color: $color-info;
-  }
-
-  .promo {
-    background-color: $color-danger;
-    border-color: $color-danger;
-  }
-}
-
 .card {
   &.card {
     background-color: $color-main;
@@ -68,9 +19,8 @@
     justify-content: center;
   }
 
-  input {
-    font-size: $base-size * 1.5;
-    padding-top: 0;
+  .tags {
+    justify-content: center;
   }
 
   .price {
@@ -81,6 +31,24 @@
       font-size: $base-size;
       align-self: flex-end;
       margin-left: $base-size / 2;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+
+    .button {
+      color: $color-light;
+      border-color: $color-accent;
+      background-color: $color-accent;
+      height: $base-size * 3.5;
+      width: $base-size * 8;
+
+      &:hover {
+        color: $color-accent;
+        background-color: $color-dark;
+        border-color: $color-dark;
+      }
     }
   }
 }

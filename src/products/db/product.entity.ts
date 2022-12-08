@@ -57,7 +57,6 @@ export class Product {
 
   @OneToMany(() => ProductImage, (image) => image.product, {
     eager: true,
-    onDelete: 'CASCADE',
   })
   images: ProductImage[];
 

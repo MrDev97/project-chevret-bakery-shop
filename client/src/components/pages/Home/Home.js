@@ -5,7 +5,9 @@ const Home = () => {
   return (
     <Container className="mt-4">
       <div className="d-flex justify-content-between">
-        <h1 className="m-0 align-self-center">All Delicious Products</h1>
+        <h1 className="m-0 align-self-center fs-2 fw-bold">
+          All Delicious Products
+        </h1>
       </div>
       <Products />
     </Container>

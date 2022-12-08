@@ -14,6 +14,6 @@ export class ProductImage {
   @IsString()
   name: string;
 
-  @ManyToOne(() => Product, (product) => product.images)
+  @ManyToOne(() => Product, (product) => product.id, { onDelete: 'CASCADE' })
   product: Product;
 }

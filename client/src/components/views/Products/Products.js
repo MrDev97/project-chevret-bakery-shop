@@ -1,6 +1,6 @@
 import { Row } from 'react-bootstrap';
 import { Alert, Progress } from 'reactstrap';
-import Product from '../../common/ProductCard/ProductCard';
+import ProductCard from '../../common/ProductCard/ProductCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import {
@@ -28,7 +28,7 @@ const Products = () => {
     return (
       <Row xs={1} md={2} lg={3} className="g-4 my-2">
         {products.map((product) => (
-          <Product key={product.id} {...product} />
+          <ProductCard key={product.id} {...product} />
         ))}
       </Row>
     );

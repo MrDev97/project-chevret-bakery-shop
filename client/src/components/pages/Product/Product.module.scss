@@ -1,0 +1,59 @@
+@import "../../../styles/settings";
+
+.card {
+  &.card {
+    background-color: $color-main;
+    border: $base-size / 7 solid $color-accent;
+    border-radius: 0;
+    font-family: $font-main;
+  }
+
+  .header {
+    font-size: $base-size * 4;
+  }
+
+  .tags {
+    justify-content: start;
+  }
+
+  .description {
+    & span {
+      font-size: $base-size * 2;
+    }
+
+    & p {
+      margin-top: $base-size;
+      font-size: $base-size * 1.25;
+    }
+  }
+
+  .price {
+    h3 {
+      font-size: $base-size * 4;
+    }
+
+    span {
+      font-size: $base-size * 2;
+      align-self: flex-end;
+      margin-left: $base-size / 2;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    .header {
+      font-size: $base-size * 3;
+    }
+
+    .price {
+      h3 {
+        font-size: $base-size * 3;
+      }
+
+      span {
+        font-size: $base-size;
+      }
+    }
+  }
+}
