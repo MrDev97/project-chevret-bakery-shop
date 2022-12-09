@@ -3,6 +3,8 @@ import { API_URL } from '../config';
 
 // selectors
 export const getAllCartProducts = ({ cart }) => cart.products;
+export const getAllCartProductsCount = ({ cart }) =>
+  cart.products.reduce((n, { quantity }) => n + quantity, 0);
 export const getCartProductById = ({ cart }, cartProductId) =>
   cart.products.find((product) => product.id === cartProductId);
 export const getRequest = ({ cart }) => cart.request;
