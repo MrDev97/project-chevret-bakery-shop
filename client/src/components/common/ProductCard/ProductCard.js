@@ -8,6 +8,7 @@ import { updateCartProductsRequest } from '../../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 import { getCartProductById } from '../../../redux/cartRedux';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const ProductCard = (props) => {
   const dispatch = useDispatch();
@@ -66,3 +67,11 @@ const ProductCard = (props) => {
 };
 
 export default ProductCard;
+
+ProductCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  images: PropTypes.array,
+  tags: PropTypes.array,
+};

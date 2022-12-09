@@ -1,5 +1,6 @@
 import styles from './QuantityInput.module.scss';
 import { Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const QuantityInput = ({ quantity, handleChange }) => {
   return (
@@ -13,3 +14,8 @@ const QuantityInput = ({ quantity, handleChange }) => {
 };
 
 export default QuantityInput;
+
+QuantityInput.propTypes = {
+  quantity: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};

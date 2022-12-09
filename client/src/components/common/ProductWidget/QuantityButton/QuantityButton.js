@@ -2,6 +2,7 @@ import styles from './QuantityButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 const QuantityButton = ({ action, add }) => {
   const handleClick = (e) => {
@@ -26,3 +27,8 @@ const QuantityButton = ({ action, add }) => {
 };
 
 export default QuantityButton;
+
+QuantityButton.propTypes = {
+  action: PropTypes.func.isRequired,
+  add: PropTypes.bool,
+};
