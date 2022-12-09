@@ -12,6 +12,7 @@ const QuantityController = ({ action, className, ...props }) => {
       quantity: quantity,
       price: props.price,
       name: props.name,
+      images: props.images,
     });
   }, [quantity]);
 

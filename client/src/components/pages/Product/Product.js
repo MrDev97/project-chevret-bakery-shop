@@ -1,5 +1,4 @@
 import styles from './Product.module.scss';
-import { useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -8,15 +7,20 @@ import { getProductById } from '../../../redux/productsRedux';
 import ProductCarousel from '../../common/ProductCarousel/ProductCarousel';
 import MapCardTags from '../../features/MapCardTags/MapCardTags';
 import QuantityController from '../../common/ProductWidget/QuantityController/QuantityController';
+import {
+  updateCartProductsRequest,
+  getCartProductById,
+} from '../../../redux/cartRedux';
+import { useDispatch } from 'react-redux';
 
 const Product = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const productData = useSelector((state) => getProductById(state, id));
-  const [quantity, setQuantity] = useState(0);
+  const cartData = useSelector((state) => getCartProductById(state, id));
 
   const updateCart = (props) => {
-    console.log('Cart Updated!');
-    console.log(props);
+    dispatch(updateCartProductsRequest(props));
   };
 
   if (!productData) return <Navigate to="/" />;
@@ -34,19 +38,19 @@ const Product = () => {
             {!!productData.tags.length && (
               <MapCardTags className={styles.tags} tags={productData.tags} />
             )}
-            <Card.Text className={`${styles.description}`}>
+            <div className={`${styles.description}`}>
               <span>Description: </span>
               <p>{productData.description}</p>
-            </Card.Text>
+            </div>
             <Container className="d-flex p-0 justify-content-between">
               <div className="d-flex col-8 flex-column justify-content-center align-items-start">
                 <QuantityController
-                  quantity={quantity}
-                  setQuantity={setQuantity}
+                  quantity={cartData ? cartData.quantity : 0}
                   action={updateCart}
                   productId={id}
                   price={productData.price}
-                  name={props.name}
+                  name={productData.name}
+                  images={[productData.images[0]]}
                 />
               </div>
               <div className="d-flex justify-content-end align-items-start">

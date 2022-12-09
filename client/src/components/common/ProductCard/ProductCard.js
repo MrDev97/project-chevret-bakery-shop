@@ -1,17 +1,21 @@
-import { useState } from 'react';
 import { Col, Card, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IMGS_URL } from '../../../config';
 import QuantityController from '../ProductWidget/QuantityController/QuantityController';
 import MapCardTags from '../../features/MapCardTags/MapCardTags';
 import styles from './ProductCard.module.scss';
+import { updateCartProductsRequest } from '../../../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+import { getCartProductById } from '../../../redux/cartRedux';
+import { useSelector } from 'react-redux';
 
 const ProductCard = (props) => {
-  const [quantity, setQuantity] = useState(0);
+  const dispatch = useDispatch();
+
+  const cartData = useSelector((state) => getCartProductById(state, props.id));
 
   const updateCart = (props) => {
-    console.log('Cart Updated!');
-    console.log(props);
+    dispatch(updateCartProductsRequest(props));
   };
 
   return (
@@ -38,12 +42,12 @@ const ProductCard = (props) => {
                 <span>PLN</span>
               </div>
               <QuantityController
-                quantity={quantity}
-                setQuantity={setQuantity}
+                quantity={cartData ? cartData.quantity : 0}
                 action={updateCart}
                 productId={props.id}
                 price={props.price}
                 name={props.name}
+                images={[props.images[0]]}
               />
             </div>
             <Link

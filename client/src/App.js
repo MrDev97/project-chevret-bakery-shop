@@ -1,10 +1,18 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home/Home.js';
 import MainView from './components/views/MainView/MainView';
 import Product from './components/pages/Product/Product.js';
+import { useDispatch } from 'react-redux';
+import { loadCartProductsRequest } from './redux/cartRedux.js';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadCartProductsRequest());
+  }, [dispatch]);
+
   return (
     <MainView>
       <Routes>
