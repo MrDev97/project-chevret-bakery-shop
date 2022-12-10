@@ -15,7 +15,7 @@ export class AuthService {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...rest } = foundUser; // password shall not be displayed, causing "unused value" warning
-    return rest;
+    const { id, ...rest } = foundUser; // password shall not be displayed, causing "unused value" warning
+    return id;
   }
 }

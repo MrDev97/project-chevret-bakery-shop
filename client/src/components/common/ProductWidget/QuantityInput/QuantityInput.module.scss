@@ -4,20 +4,20 @@ input {
   &.input {
     font-size: $base-size * 1.5;
     padding-top: 0;
+  }
 
-    /* Firefox */
-    &[type="number"] {
-      appearance: textfield;
-      max-width: $base-size * 5;
-      text-align: center;
+  /* Firefox */
+  &[type="number"] {
+    appearance: textfield;
+    max-width: $base-size * 5;
+    text-align: center;
+  }
 
-      /* Chrome, Safari, Edge, Opera */
-      &::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        appearance: none;
-        margin: 0;
-        text-align: center;
-      }
-    }
+  /* Chrome, Safari, Edge, Opera */
+  &[type="number"]::-webkit-outer-spin-button,
+  &[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+    text-align: center;
   }
 }

@@ -3,7 +3,7 @@ import styles from './NavBar.module.scss';
 import { Navbar, Form, Button, Container, Collapse } from 'react-bootstrap';
 import SearchButton from '../../common/SearchButton/SearchButton';
 import ShoppingCart from '../../common/ShoppingCart/ShoppingCart';
-import UserArea from '../../common/UserArea/UserArea';
+import UserAreaButton from '../../common/UserAreaButton/UserAreaButton';
 import HomeButton from '../../common/HomeButton/HomeButton';
 
 const NavBar = () => {
@@ -35,7 +35,7 @@ const NavBar = () => {
         <Container>
           <div className="d-flex justify-content-between justify-content-md-end">
             <HomeButton />
-            <UserArea />
+            <UserAreaButton />
             <SearchButton
               action={toggleSearch}
               aria-controls="collapse-search-form"

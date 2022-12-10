@@ -26,6 +26,54 @@ export const logoutUser = (payload) => ({ payload, type: LOGOUT_USER });
 
 // thunks
 
+export const addLoginRequest = (user) => {
+  return async (dispatch) => {
+    dispatch(startRequest({ name: 'LOGIN_USER' }));
+    try {
+      let res = await axios.post(`${API_URL}/auth/login`, user, {
+        withCredentials: true,
+        headers: {
+          Authorization: `user=${user.email}; SameSite=Lax`,
+        },
+      });
+      dispatch(loginUser());
+      sessionStorage.setItem('user', JSON.stringify(res.data));
+      dispatch(endRequest({ name: 'LOGIN_USER' }));
+    } catch (e) {
+      dispatch(
+        errorRequest({
+          name: 'LOGIN_USER',
+          error: e.message,
+          status: e.response.status,
+        }),
+      );
+    }
+  };
+};
+
+export const checkLoginRequest = () => {
+  return async (dispatch) => {
+    let userId = JSON.parse(sessionStorage.getItem('user'));
+
+    dispatch(startRequest({ name: 'CHECK_LOGIN' }));
+    try {
+      let res = await axios.get(`${API_URL}/users/${userId}`, {
+        withCredentials: true,
+      });
+      dispatch(loginUser(res.data));
+      dispatch(endRequest({ name: 'CHECK_LOGIN' }));
+    } catch (e) {
+      dispatch(
+        errorRequest({
+          name: 'CHECK_LOGIN',
+          error: e.message,
+          status: e.response.status,
+        }),
+      );
+    }
+  };
+};
+
 // initial state
 const initialState = {
   data: [],
@@ -36,6 +84,11 @@ const initialState = {
 // action creators
 const usersReducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
+    case LOGIN_USER:
+      return {
+        ...statePart,
+        user: action.payload,
+      };
     case START_REQUEST:
       return {
         ...statePart,
