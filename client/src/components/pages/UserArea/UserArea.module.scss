@@ -1,0 +1,18 @@
+@import "../../../styles/settings";
+
+.main {
+  margin-top: $base-size * 3;
+
+  button {
+    color: $color-danger;
+    border-color: $color-danger;
+    width: $base-size * 10;
+    margin-top: $base-size * 2;
+  }
+
+  button:hover {
+    color: $color-light;
+    background-color: $color-danger;
+    border-color: $color-danger;
+  }
+}

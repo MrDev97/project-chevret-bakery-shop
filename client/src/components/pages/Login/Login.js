@@ -52,7 +52,7 @@ const Login = () => {
       <h1>Login</h1>
 
       {request && request.pending && (
-        <Progress animated color="primary" value={50} />
+        <Progress animated color="success" value={50} />
       )}
       {request && request.error && status && (
         <Alert color="danger">{request.error}</Alert>
@@ -65,7 +65,7 @@ const Login = () => {
             </Alert>
           </Col>
           <Col className="col-2 align-self-center">
-            <Spinner animation="border" role="status">
+            <Spinner animation="border" variant="success" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           </Col>

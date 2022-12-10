@@ -8,6 +8,7 @@ import { loadCartProductsRequest } from './redux/cartRedux.js';
 import UserArea from './components/pages/UserArea/UserArea.js';
 import Login from './components/pages/Login/Login.js';
 import { checkLoginRequest } from './redux/usersRedux';
+import Logout from './components/features/Logout/Logout.js';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ const App = () => {
         <Route exact path="/products/:id" element={<Product />} />
         <Route path="/auth/login" element={<Login />} />
         <Route exact path="/users/:id" element={<UserArea />} />
-        {/* <Route path="/auth/logout" element={<LogOut />} />
-        <Route path="/auth/register" element={<SignUp />} />
+        <Route path="/auth/logout" element={<Logout />} />
+        {/* <Route path="/auth/register" element={<SignUp />} />
         <Route path="/products/:search" element={<Search />} />
         <Route path="*" element={<NotFound />} /> */}
       </Routes>

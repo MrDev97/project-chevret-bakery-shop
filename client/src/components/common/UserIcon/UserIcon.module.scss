@@ -1,0 +1,13 @@
+@import "../../../styles/settings";
+
+.background,
+svg {
+  color: $color-accent;
+}
+
+.user {
+  color: $color-main;
+  background-color: $color-accent;
+  height: 250px;
+  width: 250px;
+}

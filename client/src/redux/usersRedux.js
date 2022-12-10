@@ -55,17 +55,43 @@ export const checkLoginRequest = () => {
   return async (dispatch) => {
     let userId = JSON.parse(sessionStorage.getItem('user'));
 
-    dispatch(startRequest({ name: 'CHECK_LOGIN' }));
+    if (userId) {
+      dispatch(startRequest({ name: 'CHECK_LOGIN' }));
+      try {
+        let res = await axios.get(`${API_URL}/users/${userId}`, {
+          withCredentials: true,
+        });
+        dispatch(loginUser(res.data));
+        dispatch(endRequest({ name: 'CHECK_LOGIN' }));
+      } catch (e) {
+        dispatch(
+          errorRequest({
+            name: 'CHECK_LOGIN',
+            error: e.message,
+            status: e.response.status,
+          }),
+        );
+      }
+    }
+  };
+};
+
+export const addLogoutRequest = () => {
+  return async (dispatch) => {
+    let userId = JSON.parse(sessionStorage.getItem('user'));
+
+    dispatch(startRequest({ name: 'LOGOUT_USER' }));
     try {
-      let res = await axios.get(`${API_URL}/users/${userId}`, {
+      await axios.post(`${API_URL}/auth/logout`, userId, {
         withCredentials: true,
       });
-      dispatch(loginUser(res.data));
-      dispatch(endRequest({ name: 'CHECK_LOGIN' }));
+      dispatch(logoutUser());
+      dispatch(endRequest({ name: 'LOGOUT_USER' }));
+      sessionStorage.removeItem('user');
     } catch (e) {
       dispatch(
         errorRequest({
-          name: 'CHECK_LOGIN',
+          name: 'LOGOUT_USER',
           error: e.message,
           status: e.response.status,
         }),
@@ -88,6 +114,11 @@ const usersReducer = (statePart = initialState, action = {}) => {
       return {
         ...statePart,
         user: action.payload,
+      };
+    case LOGOUT_USER:
+      return {
+        ...statePart,
+        user: null,
       };
     case START_REQUEST:
       return {
