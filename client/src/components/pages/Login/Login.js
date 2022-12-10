@@ -1,4 +1,4 @@
-import React from 'react';
+import styles from './Login.module.scss';
 import { useState } from 'react';
 import { Button, Form, Spinner, Row, Col } from 'react-bootstrap';
 import { Alert, Progress } from 'reactstrap';
@@ -45,8 +45,11 @@ const Login = () => {
   }
 
   return (
-    <Form onSubmit={validate(handleSubmit)} className="col-md-8 mx-auto my-4">
-      <h1 className="my-4">Login</h1>
+    <Form
+      onSubmit={validate(handleSubmit)}
+      className={`d-flex flex-column align-items-center my-4 ${styles.form}`}
+    >
+      <h1>Login</h1>
 
       {request && request.pending && (
         <Progress animated color="primary" value={50} />
@@ -69,7 +72,7 @@ const Login = () => {
         </Row>
       )}
 
-      <Form.Group className="mb-4 col-md-6" controlId="formEmail">
+      <Form.Group className="mb-4 col-md-3" controlId="formEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control
           {...register('email', { required: true })}
@@ -85,7 +88,7 @@ const Login = () => {
         )}
       </Form.Group>
 
-      <Form.Group className="mb-4 col-md-6" controlId="formPassword">
+      <Form.Group className="mb-4 col-md-3" controlId="formPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
           {...register('password', { required: true })}
@@ -101,7 +104,7 @@ const Login = () => {
         )}
       </Form.Group>
 
-      <Button variant="success" type="submit">
+      <Button variant="outline" type="submit">
         Login
       </Button>
     </Form>
