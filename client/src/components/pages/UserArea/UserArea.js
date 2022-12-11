@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { getUser, getRequest } from '../../../redux/usersRedux';
 import { useNavigate } from 'react-router-dom';
 import UserIcon from '../../common/UserIcon/UserIcon';
+import UserAddressCard from '../../common/UserAddressCard/UserAddressCard';
 
 const UserArea = () => {
   const navigate = useNavigate();
@@ -21,6 +22,9 @@ const UserArea = () => {
 
         <Container className={`d-flex my-4 flex-column align-items-center`}>
           <UserIcon />
+          <Container className={`d-flex my-4 flex-column align-items-center`}>
+            <UserAddressCard />
+          </Container>
           <Button onClick={() => navigate('/auth/logout')} variant="outline">
             Logout
           </Button>

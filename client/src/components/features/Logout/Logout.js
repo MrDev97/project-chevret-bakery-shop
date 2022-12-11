@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addLogoutRequest } from '../../../redux/usersRedux';
 
-const LogOut = () => {
+const Logout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -13,4 +13,4 @@ const LogOut = () => {
   }, [dispatch]);
 };
 
-export default LogOut;
+export default Logout;

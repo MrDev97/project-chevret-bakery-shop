@@ -1,0 +1,23 @@
+@import "../../../styles/settings";
+
+.card {
+  &.card {
+    background-color: $color-main;
+    border: $base-size / 7 solid $color-accent;
+    border-radius: 0;
+    font-family: $font-main;
+
+    img {
+      height: $base-size * 2;
+      width: $base-size * 2;
+      border-radius: 0;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+  }
+
+  .header {
+    min-height: $base-size * 9.25;
+    justify-content: center;
+  }
+}

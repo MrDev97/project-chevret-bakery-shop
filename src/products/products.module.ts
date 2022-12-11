@@ -6,6 +6,7 @@ import { TagRepository } from './db/tag.repository';
 import { ProductRepository } from './db/product.repository';
 import { Product } from './db/product.entity';
 import { ProductImageRepository } from './db/productImage.repository';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   controllers: [ProductsController],
@@ -15,6 +16,6 @@ import { ProductImageRepository } from './db/productImage.repository';
     ProductRepository,
     ProductImageRepository,
   ],
-  imports: [TypeOrmModule.forFeature([Product])],
+  imports: [TypeOrmModule.forFeature([Product]), UsersModule],
 })
 export class ProductsModule {}

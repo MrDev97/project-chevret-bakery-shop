@@ -23,8 +23,6 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
-
   const handleSubmit = () => {
     const usr = {
       email,

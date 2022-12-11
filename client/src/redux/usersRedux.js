@@ -36,7 +36,7 @@ export const addLoginRequest = (user) => {
           Authorization: `user=${user.email}; SameSite=Lax`,
         },
       });
-      dispatch(loginUser());
+      dispatch(loginUser(res.data));
       sessionStorage.setItem('user', JSON.stringify(res.data));
       dispatch(endRequest({ name: 'LOGIN_USER' }));
     } catch (e) {
@@ -53,12 +53,12 @@ export const addLoginRequest = (user) => {
 
 export const checkLoginRequest = () => {
   return async (dispatch) => {
-    let userId = JSON.parse(sessionStorage.getItem('user'));
+    let user = JSON.parse(sessionStorage.getItem('user'));
 
-    if (userId) {
+    if (user && user.id) {
       dispatch(startRequest({ name: 'CHECK_LOGIN' }));
       try {
-        let res = await axios.get(`${API_URL}/users/${userId}`, {
+        let res = await axios.get(`${API_URL}/users/${user.id}`, {
           withCredentials: true,
         });
         dispatch(loginUser(res.data));
@@ -78,11 +78,11 @@ export const checkLoginRequest = () => {
 
 export const addLogoutRequest = () => {
   return async (dispatch) => {
-    let userId = JSON.parse(sessionStorage.getItem('user'));
+    let user = JSON.parse(sessionStorage.getItem('user'));
 
     dispatch(startRequest({ name: 'LOGOUT_USER' }));
     try {
-      await axios.post(`${API_URL}/auth/logout`, userId, {
+      await axios.post(`${API_URL}/auth/logout`, user, {
         withCredentials: true,
       });
       dispatch(logoutUser());
