@@ -35,6 +35,8 @@ export class UsersDataService {
         );
       }
 
+      console.log(userToSave);
+
       return await this.userRepository.save(userToSave);
     });
   }

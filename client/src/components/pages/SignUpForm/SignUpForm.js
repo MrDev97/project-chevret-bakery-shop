@@ -1,16 +1,22 @@
-import styles from './Login.module.scss';
+import styles from './SignUpForm.module.scss';
 import { useState } from 'react';
 import { Button, Form, Spinner, Row, Col } from 'react-bootstrap';
 import { Alert, Progress } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLoginRequest, getRequest } from '../../../redux/usersRedux';
+import { addRegistrationRequest, getRequest } from '../../../redux/usersRedux';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { dateToArray } from '../../../utils/dateToArray';
 
-const Login = () => {
+const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+  const [dateError, setDateError] = useState(false);
   const [status, setStatus] = useState(false);
 
   const request = useSelector(getRequest);
@@ -25,14 +31,26 @@ const Login = () => {
   } = useForm();
 
   const handleSubmit = () => {
+    setDateError(!dateOfBirth);
+    const dateArr = dateToArray(dateOfBirth);
     const usr = {
       email,
       password,
+      firstName,
+      lastName,
+      dateOfBirth: dateArr,
     };
-    setStatus(true);
-    dispatch(addLoginRequest(usr));
-    setEmail('');
-    setPassword('');
+
+    if (dateOfBirth) {
+      setStatus(true);
+      dispatch(addRegistrationRequest(usr));
+      setEmail('');
+      setPassword('');
+      setFirstName('');
+      setLastName('');
+      setDateOfBirth(new Date());
+      setDateError(false);
+    }
   };
 
   if (request.success && status) {
@@ -48,7 +66,7 @@ const Login = () => {
       onSubmit={validate(handleSubmit)}
       className={`d-flex flex-column align-items-center my-4 ${styles.form}`}
     >
-      <h1>Login</h1>
+      <h1>Register</h1>
 
       {request && request.pending && (
         <Progress animated color="success" value={50} />
@@ -103,18 +121,59 @@ const Login = () => {
         )}
       </Form.Group>
 
-      <Button variant="outline" type="submit">
-        Login
-      </Button>
+      <Form.Group className="mb-4 col-md-3" controlId="formFirstName">
+        <Form.Label>First Name</Form.Label>
+        <Form.Control
+          {...register('firstName', { required: true })}
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="First Name"
+        />
+        {errors.firstName && (
+          <small className="d-block form-text text-danger mt-2">
+            First Name can't be empty.
+          </small>
+        )}
+      </Form.Group>
 
-      <h1 className="mb-4 mt-5">New To our Shop?</h1>
-      <Link to={`/auth/register`} className={styles.link}>
-        <Button variant="outline" type="submit">
-          Register Now
-        </Button>
-      </Link>
+      <Form.Group className="mb-4 col-md-3" controlId="formLastName">
+        <Form.Label>First Name</Form.Label>
+        <Form.Control
+          {...register('lastName', { required: true })}
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          placeholder="Last Name"
+        />
+        {errors.lastName && (
+          <small className="d-block form-text text-danger mt-2">
+            Last Name can't be empty.
+          </small>
+        )}
+      </Form.Group>
+
+      <Form.Group className="mb-4 col-md-3" controlId="formDateOfBirth">
+        <Form.Label>Date Of Birth</Form.Label>
+        <DatePicker
+          wrapperClassName={`form-control ${styles.datepicker}`}
+          selected={new Date(dateOfBirth)}
+          onChange={(date) => setDateOfBirth(date)}
+          placeholder="Enter Date of Birth"
+          dateFormat="yyyy-MM-dd"
+        />
+        {dateError && (
+          <small className="d-block form-text text-danger mt-2">
+            Date of Birth can't be empty.
+          </small>
+        )}
+      </Form.Group>
+
+      <Button variant="outline" type="submit">
+        Register
+      </Button>
     </Form>
   );
 };
 
-export default Login;
+export default SignUpForm;

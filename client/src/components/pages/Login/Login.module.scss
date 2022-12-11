@@ -3,7 +3,12 @@
 .form {
   h1 {
     font-size: $base-size * 3;
-    margin-bottom: $base-size / 2;
+    margin-bottom: $base-size;
+
+    &:nth-of-type(2) {
+      border-top: solid 2px $color-accent;
+      padding-top: $base-size * 3;
+    }
   }
 
   label {
@@ -14,11 +19,23 @@
     color: $color-info;
     border-color: $color-info;
     width: $base-size * 10;
+
+    &:hover {
+      color: $color-light;
+      background-color: $color-accent;
+      border-color: $color-accent;
+    }
   }
 
-  button:hover {
-    color: $color-light;
-    background-color: $color-accent;
+  .link button {
+    color: $color-accent;
     border-color: $color-accent;
+    width: $base-size * 14;
+
+    &:hover {
+      color: $color-light;
+      background-color: $color-accent;
+      border-color: $color-accent;
+    }
   }
 }

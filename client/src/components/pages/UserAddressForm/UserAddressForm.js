@@ -21,7 +21,7 @@ const UserAddressForm = ({ action, actionText, ...props }) => {
     const formData = {
       street: street,
       houseNo: houseNo,
-      apartmentNo: parseInt(apartmentNo),
+      apartmentNo: apartmentNo === '' ? null : apartmentNo,
       city: city,
       country: country,
     };

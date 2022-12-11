@@ -26,10 +26,21 @@ export class AuthController {
   @Post('register')
   async registerUser(
     @Body() item: RegisterUserDto,
-  ): Promise<Omit<User, 'password' | 'role'>> {
+  ): Promise<
+    Omit<
+      User,
+      | 'password'
+      | 'role'
+      | 'firstName'
+      | 'lastName'
+      | 'dateOfBirth'
+      | 'role'
+      | 'email'
+    >
+  > {
     await this.userValidator.validateUniqueEmail(item.email);
     const user = await this.userService.addUser(item);
-    const { password, role, ...rest } = user; // password shall not be displayed, causing "unused value" warning
-    return rest;
+    const { id, password, role, ...rest } = user; // password shall not be displayed, causing "unused value" warning
+    return { id };
   }
 }

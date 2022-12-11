@@ -10,6 +10,7 @@ import Login from './components/pages/Login/Login.js';
 import { checkLoginRequest } from './redux/usersRedux';
 import Logout from './components/features/Logout/Logout.js';
 import AddUserAddress from './components/features/AddUserAddress/AddUserAddress.js';
+import SignUpForm from './components/pages/SignUpForm/SignUpForm.js';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,8 +29,8 @@ const App = () => {
         <Route path="/auth/logout" element={<Logout />} />
         <Route exact path="/users/:id/addresses" element={<AddUserAddress />} />
         <Route exact path="/users/:id" element={<UserArea />} />
-        {/* <Route path="/auth/register" element={<SignUp />} />
-        <Route path="/products/:search" element={<Search />} />
+        <Route path="/auth/register" element={<SignUpForm />} />
+        {/* <Route path="/products/:search" element={<Search />} />
         <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </MainView>
