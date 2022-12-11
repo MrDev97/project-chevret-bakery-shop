@@ -1,6 +1,6 @@
 import styles from './UserArea.module.scss';
 import { Button, Container } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUser, getRequest } from '../../../redux/usersRedux';
 import { useNavigate } from 'react-router-dom';
 import UserIcon from '../../common/UserIcon/UserIcon';
@@ -8,13 +8,25 @@ import UserAddressCard from '../../common/UserAddressCard/UserAddressCard';
 import UserAddAddressCard from '../../common/UserAddAddressCard/UserAddAddressCard';
 import UserAddressesSlider from '../../features/UserAddressesSlider/UserAddressesSlider';
 import { SwiperSlide } from 'swiper/react';
+import { checkLoginRequest } from '../../../redux/usersRedux';
+import { useEffect } from 'react';
+import { Alert, Progress } from 'reactstrap';
 
 const UserArea = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const request = useSelector(getRequest);
-  const user = useSelector(getUser);
+  const user = useSelector((state) => getUser(state));
 
-  if (request.success)
+  useEffect(() => {
+    dispatch(checkLoginRequest());
+  }, [dispatch]);
+
+  if (request.pending) return <Progress animated color="primary" value={50} />;
+  else if (request.error) return <Alert color="warning">{request.error}</Alert>;
+  else if (!request.success || !user)
+    return <Alert color="info">No User Data!</Alert>;
+  else if (request.success)
     return (
       <Container className={`${styles.main}`}>
         <div className="d-flex justify-content-between">

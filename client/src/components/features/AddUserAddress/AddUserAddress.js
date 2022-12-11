@@ -10,8 +10,7 @@ const AddUserAddress = () => {
 
   const user = useSelector(getUser);
 
-  const handleSubmit = (address) => {
-    console.log(address);
+  const handleSubmit = async (address) => {
     dispatch(addUserAddressRequest({ id: user.id, address }));
     navigate(`/users/${user.id}`);
   };
