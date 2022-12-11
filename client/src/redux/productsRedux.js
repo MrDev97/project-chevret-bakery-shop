@@ -38,6 +38,26 @@ export const loadProductsRequest = () => {
   };
 };
 
+export const loadSearchedProductsRequest = (searchPhrase) => {
+  return async (dispatch) => {
+    dispatch(startRequest({ name: 'LOAD_PRODUCTS' }));
+    try {
+      let res = await axios.get(`${API_URL}/products`, {
+        params: {
+          name: `${searchPhrase}`,
+          nameFilterType: 'CONTAINS',
+          sortField: 'name',
+          orderDirection: 'DESC',
+        },
+      });
+      dispatch(loadProducts(res.data));
+      dispatch(endRequest({ name: 'LOAD_PRODUCTS' }));
+    } catch (e) {
+      dispatch(errorRequest({ name: 'LOAD_PRODUCTS', error: e.message }));
+    }
+  };
+};
+
 // initial state
 const initialState = {
   data: [],

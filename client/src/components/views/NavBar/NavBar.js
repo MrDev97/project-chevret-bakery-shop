@@ -1,16 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './NavBar.module.scss';
 import { Navbar, Form, Button, Container, Collapse } from 'react-bootstrap';
 import SearchButton from '../../common/SearchButton/SearchButton';
 import ShoppingCart from '../../common/ShoppingCart/ShoppingCart';
 import UserAreaButton from '../../common/UserAreaButton/UserAreaButton';
 import HomeButton from '../../common/HomeButton/HomeButton';
+import { useDispatch } from 'react-redux';
+import { loadSearchedProductsRequest } from '../../../redux/productsRedux';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [searchPhrase, setSearchPhrase] = useState('');
 
   const toggleSearch = () => {
     setOpen(!open);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loadSearchedProductsRequest(searchPhrase));
   };
 
   return (
@@ -46,11 +55,13 @@ const NavBar = () => {
 
           <Collapse in={open}>
             <div id="collapse-search-form">
-              <Form className="d-flex m-2">
+              <Form onSubmit={handleSubmit} className="d-flex m-2">
                 <Form.Control
                   type="search"
                   placeholder="Search"
                   className="me-2 my-2"
+                  value={searchPhrase}
+                  onChange={(e) => setSearchPhrase(e.target.value)}
                 />
                 <Button
                   type="submit"
