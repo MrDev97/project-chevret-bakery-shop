@@ -11,6 +11,7 @@ import { checkLoginRequest } from './redux/usersRedux';
 import Logout from './components/features/Logout/Logout.js';
 import AddUserAddress from './components/features/AddUserAddress/AddUserAddress.js';
 import SignUpForm from './components/pages/SignUpForm/SignUpForm.js';
+import NotFound from './components/pages/NotFound/NotFound.js';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,8 +31,7 @@ const App = () => {
         <Route exact path="/users/:id/addresses" element={<AddUserAddress />} />
         <Route exact path="/users/:id" element={<UserArea />} />
         <Route path="/auth/register" element={<SignUpForm />} />
-        {/* <Route path="/products/:search" element={<Search />} />
-        <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </MainView>
   );

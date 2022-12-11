@@ -1,0 +1,20 @@
+@import "../../../styles/settings";
+
+.main {
+  h1 {
+    font-size: $base-size * 3;
+    margin-bottom: $base-size / 2;
+  }
+
+  button {
+    color: $color-info;
+    border-color: $color-info;
+    width: $base-size * 16;
+  }
+
+  button:hover {
+    color: $color-light;
+    background-color: $color-info;
+    border-color: $color-info;
+  }
+}
