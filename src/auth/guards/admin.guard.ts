@@ -10,8 +10,6 @@ export class AdminGuard implements CanActivate {
   async canActivate(context: ExecutionContext) {
     const req = context.switchToHttp().getRequest();
 
-    console.log(req);
-
     const {
       user,
       params,
