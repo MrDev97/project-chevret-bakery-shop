@@ -153,6 +153,11 @@ const orderReducer = (statePart = initialState, action = {}) => {
         ...statePart,
         id: action.payload,
       };
+    case ADD_ORDER_ID:
+      return {
+        ...statePart,
+        id: action.payload,
+      };
     case RESET_ORDER:
       return initialState;
     case START_REQUEST:

@@ -20,6 +20,7 @@ import {
 } from '../../../redux/orderRedux';
 import SummaryHeader from '../../common/SummaryHeader/SummaryHeader';
 import CheckoutProducts from '../../views/CheckoutProducts/CheckoutProducts';
+import { getRequest } from '../../../redux/orderRedux';
 
 const CheckoutSummary = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const CheckoutSummary = () => {
   );
   const cartProducts = useSelector(getAllCartProducts);
   const cartProductSum = useSelector((state) => getAllCartProductsSum(state));
+  const request = useSelector(getRequest);
 
   useEffect(() => {
     dispatch(checkLoginRequest());
@@ -49,9 +51,13 @@ const CheckoutSummary = () => {
       orderedProducts: order.products,
     };
     dispatch(addOrderRequest(fd));
-
-    navigate('/checkout/order');
   };
+
+  useEffect(() => {
+    if (request && request.success) {
+      navigate('/checkout/order');
+    }
+  }, [request]);
 
   return (
     <Container className={`mt-4 ${styles.main}`}>

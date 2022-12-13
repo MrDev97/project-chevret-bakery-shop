@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import styles from './QuantityController.module.scss';
 import QuantityButton from '../QuantityButton/QuantityButton';
 import QuantityInput from '../QuantityInput/QuantityInput';
 import PropTypes from 'prop-types';

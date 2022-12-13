@@ -78,7 +78,7 @@ const SignUpForm = () => {
         <Row className="mb-3">
           <Col className="col-10 align-self-center">
             <Alert className="m-0" color="success">
-              You have been Successfully Registered! Redirecting...
+              You have been Successfully ! Redirecting...
             </Alert>
           </Col>
           <Col className="col-2 align-self-center">
