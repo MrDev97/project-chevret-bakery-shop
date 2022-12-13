@@ -12,6 +12,7 @@ import Logout from './components/features/Logout/Logout.js';
 import AddUserAddress from './components/features/AddUserAddress/AddUserAddress.js';
 import SignUpForm from './components/pages/SignUpForm/SignUpForm.js';
 import NotFound from './components/pages/NotFound/NotFound.js';
+import Cart from './components/pages/Cart/Cart.js';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,9 +29,10 @@ const App = () => {
         <Route exact path="/products/:id" element={<Product />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/logout" element={<Logout />} />
+        <Route path="/auth/register" element={<SignUpForm />} />
         <Route exact path="/users/:id/addresses" element={<AddUserAddress />} />
         <Route exact path="/users/:id" element={<UserArea />} />
-        <Route path="/auth/register" element={<SignUpForm />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainView>

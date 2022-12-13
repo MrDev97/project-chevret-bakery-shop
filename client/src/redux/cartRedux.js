@@ -5,6 +5,13 @@ import { API_URL } from '../config';
 export const getAllCartProducts = ({ cart }) => cart.products;
 export const getAllCartProductsCount = ({ cart }) =>
   cart.products.reduce((n, { quantity }) => n + quantity, 0);
+
+export const getAllCartProductsSum = ({ cart }) =>
+  cart.products.reduce(
+    (n, { price, quantity }) => Math.round((n + price * quantity) * 100) / 100,
+    0,
+  );
+
 export const getCartProductById = ({ cart }, cartProductId) =>
   cart.products.find((product) => product.id === cartProductId);
 export const getRequest = ({ cart }) => cart.request;
@@ -47,9 +54,15 @@ export const updateCartProduct = (payload) => ({
 // thunks
 export const loadCartProductsRequest = () => {
   return async (dispatch) => {
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart && cart.products) {
-      dispatch(loadCartProducts(cart.products));
+    dispatch(startRequest({ name: 'LOAD_CART_PRODUCTS' }));
+    try {
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      if (cart && cart.products) {
+        dispatch(loadCartProducts(cart.products));
+      }
+      dispatch(endRequest({ name: 'LOAD_CART_PRODUCTS' }));
+    } catch (e) {
+      dispatch(errorRequest({ name: 'LOAD_CART_PRODUCTS', error: e.message }));
     }
   };
 };

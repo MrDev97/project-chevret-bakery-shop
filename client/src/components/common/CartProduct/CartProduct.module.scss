@@ -1,0 +1,54 @@
+@import "../../../styles/settings";
+
+.card {
+  &.card {
+    background-color: $color-main;
+    font-family: $font-main;
+    margin-bottom: $base-size * 1.5;
+    border: none;
+
+    img {
+      border-radius: 0;
+      object-fit: cover;
+    }
+  }
+
+  .body {
+    border: $base-size / 7 solid $color-accent;
+    border-radius: 0;
+  }
+
+  .price {
+    font-size: $base-size * 2;
+    margin-bottom: $base-size;
+
+    span {
+      font-size: $base-size;
+      align-self: flex-end;
+      margin-left: $base-size / 2;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+
+    .button {
+      color: $color-light;
+      border-color: $color-accent;
+      background-color: $color-accent;
+      height: $base-size * 3.5;
+      width: $base-size * 8;
+
+      &:hover {
+        color: $color-accent;
+        background-color: $color-dark;
+        border-color: $color-dark;
+      }
+    }
+  }
+
+  .icon::before,
+  .trash {
+    font-size: $base-size * 3;
+  }
+}

@@ -14,9 +14,7 @@ import ProductsSlider from '../../features/ProductsSlider/ProductsSlider';
 
 const Products = () => {
   const dispatch = useDispatch();
-  const products = useSelector(getAllProducts).sort((a, b) => {
-    return new Date(b.date) - new Date(a.date);
-  });
+  const products = useSelector(getAllProducts);
   const request = useSelector(getRequest);
 
   useEffect(() => {

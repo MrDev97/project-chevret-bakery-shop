@@ -1,0 +1,23 @@
+@import "../../../styles/settings";
+
+.main {
+  h1 {
+    font-size: $base-size * 4;
+    margin-bottom: $base-size;
+  }
+
+  .row {
+    padding-bottom: $base-size / 2;
+    border-bottom: 3px dotted $color-accent;
+  }
+
+  .price {
+    font-size: $base-size * 4;
+
+    span {
+      font-size: $base-size;
+      align-self: flex-end;
+      margin-left: $base-size / 2;
+    }
+  }
+}

@@ -39,7 +39,7 @@ const QuantityController = ({ action, className, ...props }) => {
   };
 
   return (
-    <div className={`d-flex justify-content-center ${styles} ${className}`}>
+    <div className={`d-flex justify-content-center ${className}`}>
       <QuantityButton action={removeCartProduct} add={false} />
       <QuantityInput
         handleChange={handleChange}

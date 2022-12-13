@@ -1,16 +1,16 @@
-import styles from './ShoppingCart.module.scss';
+import styles from './ShoppingCartButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { getAllCartProductsCount } from '../../../redux/cartRedux';
 import { useSelector } from 'react-redux';
 
-const ShoppingCart = () => {
+const ShoppingCartButton = () => {
   const cartProductCount = useSelector((state) =>
     getAllCartProductsCount(state),
   );
 
   return (
-    <a href="/users/cart">
+    <a href="/cart">
       <span
         data-count={cartProductCount}
         className={`fa-stack fa-2x has-badge ${styles.background}`}
@@ -28,4 +28,4 @@ const ShoppingCart = () => {
   );
 };
 
-export default ShoppingCart;
+export default ShoppingCartButton;

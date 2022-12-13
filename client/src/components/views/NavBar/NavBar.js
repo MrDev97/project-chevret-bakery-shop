@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './NavBar.module.scss';
 import { Navbar, Form, Button, Container, Collapse } from 'react-bootstrap';
 import SearchButton from '../../common/SearchButton/SearchButton';
-import ShoppingCart from '../../common/ShoppingCart/ShoppingCart';
+import ShoppingCart from '../../common/ShoppingCartButton/ShoppingCartButton';
 import UserAreaButton from '../../common/UserAreaButton/UserAreaButton';
 import HomeButton from '../../common/HomeButton/HomeButton';
 import { useDispatch } from 'react-redux';
