@@ -9,6 +9,7 @@
     "prebuild": "rimraf dist",
     "build": "cd client && npm install && npm run build",
     "build:nest": "nest build",
+    "deploy": "cd client && yarn build && cd ../ && git add client/build && git commit -m \"deploy\" && git push heroku main",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
