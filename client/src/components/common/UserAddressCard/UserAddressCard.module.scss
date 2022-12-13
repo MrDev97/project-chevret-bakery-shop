@@ -1,5 +1,15 @@
 @import "../../../styles/settings";
 
+.link {
+  color: $color-light;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-accent;
+    transition: all 0.5s;
+  }
+}
+
 .card {
   &.card {
     background-color: $color-main;

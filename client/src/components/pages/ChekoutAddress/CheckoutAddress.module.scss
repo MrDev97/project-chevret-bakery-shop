@@ -6,23 +6,19 @@
     margin-bottom: $base-size;
   }
 
+  .chosen {
+    color: $color-accent;
+  }
+
   .row {
     padding-bottom: $base-size / 2;
     border-bottom: 3px dotted $color-accent;
   }
 
-  .price {
-    font-size: $base-size * 4;
-
-    span {
-      font-size: $base-size;
-      align-self: flex-end;
-      margin-left: $base-size / 2;
-    }
-  }
-
   .links {
     text-decoration: none;
+    padding-top: $base-size;
+    border-top: 3px dotted $color-accent;
 
     a {
       text-decoration: none;
@@ -42,11 +38,17 @@
       }
     }
 
-    .checkout {
+    .next {
       color: $color-light;
-      border-color: $color-info;
-      background-color: $color-info;
-      width: $base-size * 16;
+      border-color: $color-dark;
+      background-color: $color-dark;
+      width: $base-size * 8;
+
+      &:hover {
+        color: $color-dark;
+        background-color: $color-accent;
+        border-color: $color-accent;
+      }
     }
   }
 }

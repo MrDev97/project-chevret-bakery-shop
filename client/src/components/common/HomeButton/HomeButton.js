@@ -1,10 +1,11 @@
 import styles from './HomeButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { Link } from 'react-router-dom';
 
 const HomeButton = () => {
   return (
-    <a href="/">
+    <Link to={`/`}>
       <span className={`fa-stack fa-2x has-badge ${styles.background}`}>
         <FontAwesomeIcon
           icon={solid('circle')}
@@ -15,7 +16,7 @@ const HomeButton = () => {
           className={`fa-stack-1x fa-inverse ${styles.home}`}
         />
       </span>
-    </a>
+    </Link>
   );
 };
 

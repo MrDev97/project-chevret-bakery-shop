@@ -1,5 +1,5 @@
 import styles from './CartProduct.module.scss';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Col, Card } from 'react-bootstrap';
 import { IMGS_URL } from '../../../config';
 import { useSelector } from 'react-redux';
 import QuantityController from '../../common/ProductWidget/QuantityController/QuantityController';

@@ -29,24 +29,6 @@
     }
   }
 
-  .link {
-    text-decoration: none;
-
-    .button {
-      color: $color-light;
-      border-color: $color-accent;
-      background-color: $color-accent;
-      height: $base-size * 3.5;
-      width: $base-size * 8;
-
-      &:hover {
-        color: $color-accent;
-        background-color: $color-dark;
-        border-color: $color-dark;
-      }
-    }
-  }
-
   .icon::before,
   .trash {
     font-size: $base-size * 3;

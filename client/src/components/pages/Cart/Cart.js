@@ -1,11 +1,14 @@
 import styles from './Cart.module.scss';
-import { Col, Container } from 'react-bootstrap';
+import { Col, Container, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import CartProducts from '../../views/CartProducts/CartProducts';
 import { getAllCartProductsSum } from '../../../redux/cartRedux';
+import { Link } from 'react-router-dom';
+import { getUser } from '../../../redux/usersRedux';
 
 const Cart = () => {
   const cartProductCount = useSelector((state) => getAllCartProductsSum(state));
+  const user = useSelector(getUser);
 
   return (
     <Container className={`mt-4 ${styles.main}`}>
@@ -24,6 +27,22 @@ const Cart = () => {
             <span>PLN</span>
           </div>
         </Col>
+      </div>
+      <div className={`d-flex mt-4 row ${styles.links}`}>
+        <Link
+          to={`/`}
+          className={`d-flex col align-items-center justify-content-start`}
+        >
+          <Button className={`align-self-center`}>Go Back</Button>
+        </Link>
+        <Link
+          to={user ? `/checkout/address` : `/auth/login`}
+          className={`d-flex col align-items-center justify-content-end`}
+        >
+          <Button className={`align-self-center ${styles.checkout}`}>
+            Proceed to Checkout
+          </Button>
+        </Link>
       </div>
     </Container>
   );

@@ -56,7 +56,7 @@ const ProductCard = (props) => {
               className={`d-flex col align-items-center justify-content-center ${styles.link}`}
             >
               <Button className={`align-self-center ${styles.button}`}>
-                MORE
+                More
               </Button>
             </Link>
           </Container>

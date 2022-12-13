@@ -7,14 +7,18 @@ import { useDispatch } from 'react-redux';
 import { loadCartProductsRequest } from './redux/cartRedux.js';
 import UserArea from './components/pages/UserArea/UserArea.js';
 import Login from './components/pages/Login/Login.js';
-import { checkLoginRequest } from './redux/usersRedux';
+import { checkLoginRequest, getUser } from './redux/usersRedux';
 import Logout from './components/features/Logout/Logout.js';
 import AddUserAddress from './components/features/AddUserAddress/AddUserAddress.js';
 import SignUpForm from './components/pages/SignUpForm/SignUpForm.js';
 import NotFound from './components/pages/NotFound/NotFound.js';
 import Cart from './components/pages/Cart/Cart.js';
+import ProtectedRoute from './components/features/ProtectedRoute/ProtectedRoute.js';
+import { useSelector } from 'react-redux';
+import CheckoutAddress from './components/pages/ChekoutAddress/CheckoutAddress.js';
 
 const App = () => {
+  const user = useSelector(getUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,11 +32,20 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route exact path="/products/:id" element={<Product />} />
         <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/logout" element={<Logout />} />
         <Route path="/auth/register" element={<SignUpForm />} />
-        <Route exact path="/users/:id/addresses" element={<AddUserAddress />} />
-        <Route exact path="/users/:id" element={<UserArea />} />
+        <Route path="/auth" element={<ProtectedRoute user={user} />}>
+          <Route path="/auth/logout" element={<Logout />} />
+        </Route>
+        <Route path="/users" element={<ProtectedRoute user={user} />}>
+          <Route exact path=":id/addresses" element={<AddUserAddress />} />
+          <Route exact path=":id" element={<UserArea />} />
+        </Route>
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<ProtectedRoute user={user} />}>
+          <Route exact path="address" element={<CheckoutAddress />} />
+          {/* <Route exact path="payment" element={<CheckoutPayment />} />
+          <Route exact path="summary" element={<CheckoutSummary />} /> */}
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainView>

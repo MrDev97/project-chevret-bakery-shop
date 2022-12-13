@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { getAllCartProductsCount } from '../../../redux/cartRedux';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ShoppingCartButton = () => {
   const cartProductCount = useSelector((state) =>
@@ -10,7 +11,7 @@ const ShoppingCartButton = () => {
   );
 
   return (
-    <a href="/cart">
+    <Link to={`/cart`}>
       <span
         data-count={cartProductCount}
         className={`fa-stack fa-2x has-badge ${styles.background}`}
@@ -24,7 +25,7 @@ const ShoppingCartButton = () => {
           className={`fa-stack-1x fa-inverse ${styles.cart}`}
         />
       </span>
-    </a>
+    </Link>
   );
 };
 
