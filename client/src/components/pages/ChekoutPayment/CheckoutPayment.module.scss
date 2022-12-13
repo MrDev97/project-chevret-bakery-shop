@@ -1,0 +1,54 @@
+@import "../../../styles/settings";
+
+.main {
+  h1 {
+    font-size: $base-size * 4;
+    margin-bottom: $base-size;
+  }
+
+  .chosen {
+    color: $color-accent;
+  }
+
+  .row {
+    padding-bottom: $base-size / 2;
+    border-bottom: 3px dotted $color-accent;
+  }
+
+  .links {
+    text-decoration: none;
+    padding-top: $base-size;
+    border-top: 3px dotted $color-accent;
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      color: $color-light;
+      border-color: $color-accent;
+      background-color: $color-accent;
+      height: $base-size * 3.5;
+      width: $base-size * 8;
+
+      &:hover {
+        color: $color-accent;
+        background-color: $color-dark;
+        border-color: $color-dark;
+      }
+    }
+
+    .next {
+      color: $color-light;
+      border-color: $color-dark;
+      background-color: $color-dark;
+      width: $base-size * 8;
+
+      &:hover {
+        color: $color-dark;
+        background-color: $color-accent;
+        border-color: $color-accent;
+      }
+    }
+  }
+}

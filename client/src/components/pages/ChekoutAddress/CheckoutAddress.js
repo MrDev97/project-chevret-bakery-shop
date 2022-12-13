@@ -75,7 +75,9 @@ const CheckoutAddress = () => {
           to={`/checkout/payment`}
           className={`d-flex col align-items-center justify-content-end`}
         >
-          <Button className={`align-self-center ${styles.next}`}>Next</Button>
+          <Button className={`align-self-center ${styles.next}`}>
+            Payment
+          </Button>
         </Link>
       </div>
     </Container>

@@ -49,9 +49,11 @@ const UserAddressForm = ({ action, actionText, ...props }) => {
         )}
       </Form.Group>
 
-      <div className="mb-4 row col-md-3 justify-content-start">
-        <Form.Label className="p-0">House / Apartment No.</Form.Label>
-        <Form.Group className="p-0 col-md-3" controlId="formHouseNo">
+      <div className="mb-4 row col-md-3 justify-content-center justify-content-md-start">
+        <Form.Label className="p-0 d-flex justify-content-center justify-content-md-start">
+          House / Apartment No.
+        </Form.Label>
+        <Form.Group className="p-0 col-3" controlId="formHouseNo">
           <Form.Control
             {...register('houseNo', { required: true, min: 1 })}
             type="number"
@@ -61,7 +63,7 @@ const UserAddressForm = ({ action, actionText, ...props }) => {
           />
         </Form.Group>
 
-        <Form.Group className="p-0 col-md-3" controlId="formApartmentNo">
+        <Form.Group className="p-0 col-3" controlId="formApartmentNo">
           <Form.Control
             {...register('apartmentNo', { min: 1 })}
             type="number"

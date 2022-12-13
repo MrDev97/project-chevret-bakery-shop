@@ -20,15 +20,15 @@
     margin-bottom: $base-size;
 
     img {
-      height: $base-size * 4;
-      width: $base-size * 4;
+      height: $base-size * 2;
+      width: $base-size * 2;
       border-radius: 0;
       object-fit: cover;
       margin: 0 auto;
     }
   }
 
-  .body {
+  .header {
     min-height: $base-size * 9.25;
     justify-content: center;
   }
