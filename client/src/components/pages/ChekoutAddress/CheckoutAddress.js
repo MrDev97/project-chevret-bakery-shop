@@ -10,18 +10,26 @@ import { SwiperSlide } from 'swiper/react';
 import { checkLoginRequest } from '../../../redux/usersRedux';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { getAllCartProducts } from '../../../redux/cartRedux';
+import {
+  addOrderAddressRequest,
+  addOrderProductsRequest,
+} from '../../../redux/orderRedux';
 
 const CheckoutAddress = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+  const cartProducts = useSelector(getAllCartProducts);
   const [currentAddress, setCurrentAddress] = useState(null);
 
   useEffect(() => {
     dispatch(checkLoginRequest());
+    dispatch(addOrderProductsRequest(cartProducts));
   }, [dispatch]);
 
   const updateCheckout = (props) => {
     setCurrentAddress(props.street);
+    dispatch(addOrderAddressRequest(props.id));
   };
 
   return (
