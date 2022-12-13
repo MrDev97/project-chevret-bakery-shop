@@ -206,9 +206,8 @@ export class OrdersDataService {
           await this.orderProductRepository.save(orderedProductToSave);
           orderedProductsToSave.push(orderedProductToSave);
         }
-
-        return orderedProductsToSave;
       }
+      return orderedProductsToSave;
     });
   }
 }

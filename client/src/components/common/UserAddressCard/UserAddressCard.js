@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 
 const UserAddressCard = ({ action, ...props }) => {
   const handleClick = () => {
-    action(props);
+    if (action) {
+      action(props);
+    }
   };
 
   return (

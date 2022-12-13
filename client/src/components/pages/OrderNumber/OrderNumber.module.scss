@@ -1,0 +1,17 @@
+@import "../../../styles/settings";
+
+.main {
+  h1 {
+    font-size: $base-size * 3;
+    margin: $base-size 0;
+
+    &:nth-of-type(2) {
+      color: $color-accent;
+    }
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}

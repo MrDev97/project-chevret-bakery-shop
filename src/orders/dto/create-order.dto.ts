@@ -4,6 +4,7 @@ import {
   IsNotEmpty,
   IsString,
   ValidateNested,
+  IsOptional,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Transform } from 'class-transformer';
@@ -24,10 +25,10 @@ export class CreateOrderDto {
   @Transform(({ value }) => sanitizeHtml(value))
   addressId: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @Transform(({ value }) => sanitizeHtml(value))
-  description: string;
+  description?: string;
 }
 
 export class CreateOrderProductDto {

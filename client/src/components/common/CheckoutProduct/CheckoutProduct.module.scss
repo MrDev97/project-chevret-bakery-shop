@@ -1,0 +1,35 @@
+@import "../../../styles/settings";
+
+.card {
+  &.card {
+    background-color: $color-main;
+    font-family: $font-main;
+    margin-bottom: $base-size * 1.5;
+    border: none;
+
+    img {
+      border-radius: 0;
+      object-fit: cover;
+    }
+  }
+
+  .body {
+    border: $base-size / 7 solid $color-accent;
+    border-radius: 0;
+  }
+
+  .price {
+    font-size: $base-size * 2;
+
+    span {
+      font-size: $base-size;
+      align-self: flex-end;
+      margin-left: $base-size / 2;
+    }
+  }
+
+  .multiplicator {
+    font-size: $base-size * 1.5;
+    margin-left: $base-size / 2;
+  }
+}

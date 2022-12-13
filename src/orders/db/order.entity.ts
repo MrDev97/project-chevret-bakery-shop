@@ -1,4 +1,4 @@
-import { IsDate, IsString, Min } from 'class-validator';
+import { IsDate, IsString, Min, IsOptional } from 'class-validator';
 import { UserAddress } from 'src/users/db/userAddress.entity';
 import { User } from 'src/users/db/users.entity';
 import {
@@ -50,9 +50,10 @@ export class Order {
   @Min(0)
   totalPrice: number;
 
+  @IsOptional()
   @Column({ type: 'text' })
   @IsString()
-  description: string;
+  description?: string;
 
   @Column('enum', {
     enum: Statuses,

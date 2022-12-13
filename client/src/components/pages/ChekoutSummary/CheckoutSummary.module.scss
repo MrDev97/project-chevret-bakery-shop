@@ -1,0 +1,72 @@
+@import "../../../styles/settings";
+
+.main {
+  h1 {
+    font-size: $base-size * 4;
+    margin-bottom: $base-size;
+  }
+
+  .price {
+    font-size: $base-size * 4;
+
+    span {
+      font-size: $base-size;
+      align-self: flex-end;
+      margin-left: $base-size / 2;
+    }
+  }
+
+  .row {
+    padding-bottom: $base-size / 2;
+    border-bottom: 3px dotted $color-accent;
+    margin-bottom: $base-size * 5;
+  }
+
+  .links {
+    text-decoration: none;
+    padding-bottom: $base-size;
+    border-bottom: 3px dotted $color-accent;
+
+    a {
+      text-decoration: none;
+      color: $color-light;
+    }
+
+    .edit {
+      font-size: $base-size * 1.5;
+    }
+
+    button {
+      color: $color-light;
+      border-color: $color-accent;
+      background-color: $color-accent;
+      height: $base-size * 3.5;
+      width: $base-size * 8;
+
+      &:hover {
+        color: $color-accent;
+        background-color: $color-dark;
+        border-color: $color-dark;
+      }
+    }
+
+    input {
+      background-color: $color-main;
+      border: 3px dotted $color-accent;
+      color: $color-light;
+    }
+
+    .next {
+      color: $color-light;
+      border-color: $color-info;
+      background-color: $color-info;
+      width: $base-size * 16;
+
+      &:hover {
+        color: $color-dark;
+        background-color: $color-accent;
+        border-color: $color-accent;
+      }
+    }
+  }
+}

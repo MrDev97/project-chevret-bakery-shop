@@ -1,0 +1,21 @@
+@import "../../../styles/settings";
+
+.links {
+  text-decoration: none;
+  padding-bottom: $base-size;
+  border-bottom: 3px dotted $color-accent;
+
+  a {
+    text-decoration: none;
+    color: $color-light;
+
+    &:hover {
+      text-decoration: none;
+      color: $color-light;
+    }
+  }
+
+  .edit {
+    font-size: $base-size * 1.5;
+  }
+}

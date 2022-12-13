@@ -17,6 +17,8 @@ import ProtectedRoute from './components/features/ProtectedRoute/ProtectedRoute.
 import { useSelector } from 'react-redux';
 import CheckoutAddress from './components/pages/ChekoutAddress/CheckoutAddress.js';
 import CheckoutPayment from './components/pages/ChekoutPayment/CheckoutPayment.js';
+import CheckoutSummary from './components/pages/ChekoutSummary/CheckoutSummary.js';
+import OrderNumber from './components/pages/OrderNumber/OrderNumber.js';
 
 const App = () => {
   const user = useSelector(getUser);
@@ -45,7 +47,8 @@ const App = () => {
         <Route path="/checkout" element={<ProtectedRoute user={user} />}>
           <Route exact path="address" element={<CheckoutAddress />} />
           <Route exact path="payment" element={<CheckoutPayment />} />
-          {/* <Route exact path="summary" element={<CheckoutSummary />} /> */}
+          <Route exact path="summary" element={<CheckoutSummary />} />
+          <Route exact path="order" element={<OrderNumber />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

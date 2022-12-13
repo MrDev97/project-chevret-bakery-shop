@@ -11,7 +11,9 @@ const UserPaymentMethodsCard = ({ action }) => {
   };
 
   const handleClick = () => {
-    action(details);
+    if (action) {
+      action(details);
+    }
   };
 
   return (

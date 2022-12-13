@@ -29,6 +29,8 @@ const UPDATE_CART_PRODUCT = createActionName('UPDATE_CART_PRODUCT');
 const REMOVE_CART_PRODUCT = createActionName('REMOVE_CART_PRODUCT');
 const LOAD_CART_PRODUCTS = createActionName('LOAD_CART_PRODUCTS');
 
+const RESET_CART_PRODUCT = createActionName('RESET_CART_PRODUCT');
+
 // actions
 export const startRequest = (payload) => ({ payload, type: START_REQUEST });
 export const endRequest = (payload) => ({ payload, type: END_REQUEST });
@@ -49,6 +51,10 @@ export const removeCartProduct = (payload) => ({
 export const updateCartProduct = (payload) => ({
   payload,
   type: UPDATE_CART_PRODUCT,
+});
+export const resetCartProduct = (payload) => ({
+  payload,
+  type: RESET_CART_PRODUCT,
 });
 
 // thunks
@@ -161,6 +167,8 @@ const cartReducer = (statePart = initialState, action = {}) => {
             : product,
         ),
       };
+    case RESET_CART_PRODUCT:
+      return initialState;
     case START_REQUEST:
       return {
         ...statePart,

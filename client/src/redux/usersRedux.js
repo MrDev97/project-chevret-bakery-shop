@@ -4,6 +4,8 @@ import { API_URL } from '../config';
 // selectors
 export const getRequest = ({ users }) => users.request;
 export const getUser = ({ users }) => users.user;
+export const getUserAddressByAddressId = ({ users }, addressId) =>
+  users.user.address.find((address) => address.id === addressId);
 
 // action name creator
 const reducerName = 'users';

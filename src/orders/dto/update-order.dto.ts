@@ -6,6 +6,7 @@ import {
   ValidateNested,
   IsEnum,
   IsArray,
+  IsOptional,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Statuses } from '../enums/statuses.enum';
@@ -27,7 +28,7 @@ export class UpdateOrderDto {
   @Transform(({ value }) => sanitizeHtml(value))
   addressId: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @Transform(({ value }) => sanitizeHtml(value))
   description: string;
