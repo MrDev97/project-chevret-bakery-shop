@@ -1,6 +1,7 @@
 {
   "name": "project-chevret-bakery-shop",
   "version": "0.0.1",
+  "main": "./dist/main.js",
   "engines": {
     "node": "16.15.0"
   },
@@ -15,7 +16,7 @@
     "start": "node dist/main.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node ./dist/main.js",
+    "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
