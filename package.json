@@ -1,6 +1,9 @@
 {
   "name": "project-chevret-bakery-shop",
   "version": "0.0.1",
+  "engines": {
+    "node": "16.15.0"
+  },
   "description": "",
   "author": "",
   "private": true,
